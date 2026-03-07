@@ -8,6 +8,7 @@ import { supabase } from '../lib/supabase';
 interface Props {
   onLogin: () => void;
   onSubscribe: () => void;
+  onFreeRegister: () => void;
   onPrivacy: () => void;
   onTerms: () => void;
   onAbout: () => void;
@@ -16,7 +17,7 @@ interface Props {
   setLang: (l: Language) => void;
 }
 
-const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onPrivacy, onTerms, onAbout, t, lang, setLang }) => {
+const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, onPrivacy, onTerms, onAbout, t, lang, setLang }) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeBanners, setActiveBanners] = useState<AppBanner[]>([]);
   const [showBannerOverlay, setShowBannerOverlay] = useState(false);
@@ -116,7 +117,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onPrivacy, onTerms
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                <button 
-                 onClick={onSubscribe} 
+                 onClick={onFreeRegister} 
                  className="w-full sm:w-auto px-12 py-7 rounded-2xl font-black uppercase text-xs tracking-[0.2em] text-slate-950 shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3 btn-gold-shine"
                >
                  Experimentar grátis

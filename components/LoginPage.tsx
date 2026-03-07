@@ -8,14 +8,15 @@ interface Props {
   onBack: () => void;
   t: (key: string) => any;
   externalError?: { title: string, text: string } | null;
+  initialRegisterMode?: boolean;
 }
 
-const LoginPage: React.FC<Props> = ({ onLogin, onBack, t, externalError }) => {
+const LoginPage: React.FC<Props> = ({ onLogin, onBack, t, externalError, initialRegisterMode = false }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<{ title: string, text: string } | null>(null);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(initialRegisterMode);
   
   const [regData, setRegData] = useState({
     name: '',

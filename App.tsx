@@ -123,6 +123,7 @@ const App: React.FC = () => {
   const [authError, setAuthError] = useState<{ title: string, text: string } | null>(null);
   const [hideValues, setHideValues] = useState(false);
   const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
+  const [loginInRegisterMode, setLoginInRegisterMode] = useState(false);
   
   const isInitialLoad = useRef(true);
 
@@ -298,11 +299,37 @@ const App: React.FC = () => {
       />
       {appState === 'splash' ? <SplashScreen t={t} /> : null}
       {appState === 'language-gate' && <LanguageGate onSelect={(lang) => { setSystemLang(lang); setAppState('landing'); }} />}
-      {appState === 'landing' && <LandingPage onLogin={() => setAppState('login')} onSubscribe={() => setAppState('subscription')} t={t} lang={systemLang} setLang={setSystemLang} onPrivacy={() => setAppState('privacy')} onTerms={() => setAppState('terms')} onAbout={() => setAppState('about-nexus')} />}
+      {appState === 'landing' && (
+        <LandingPage 
+          onLogin={() => {
+            setLoginInRegisterMode(false);
+            setAppState('login');
+          }} 
+          onSubscribe={() => setAppState('subscription')} 
+          onFreeRegister={() => {
+            setLoginInRegisterMode(true);
+            setAppState('login');
+          }}
+          t={t} 
+          lang={systemLang} 
+          setLang={setSystemLang} 
+          onPrivacy={() => setAppState('privacy')} 
+          onTerms={() => setAppState('terms')} 
+          onAbout={() => setAppState('about-nexus')} 
+        />
+      )}
       {appState === 'privacy' && <PrivacyPage onBack={() => setAppState('landing')} />}
       {appState === 'terms' && <TermsPage onBack={() => setAppState('landing')} />}
       {appState === 'subscription' && <SubscriptionPage onSuccess={() => setAppState('login')} onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} t={t} />}
-      {appState === 'login' && <LoginPage onLogin={() => {}} onBack={() => setAppState('landing')} t={t} externalError={authError} />}
+      {appState === 'login' && (
+        <LoginPage 
+          onLogin={() => {}} 
+          onBack={() => setAppState('landing')} 
+          t={t} 
+          externalError={authError} 
+          initialRegisterMode={loginInRegisterMode}
+        />
+      )}
       {appState === 'about-nexus' && <AboutNexusPage onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} />}
       
       {user.id && <PublicSupportChat />}
