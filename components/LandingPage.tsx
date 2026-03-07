@@ -115,7 +115,12 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onPrivacy, onTerms
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-               <button onClick={onSubscribe} className="w-full sm:w-auto px-12 py-7 bg-emerald-500 text-slate-950 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-emerald-400 transition-all shadow-[0_20px_40px_rgba(16,185,129,0.2)] active:scale-95">Experimentar App Agora</button>
+               <button 
+                 onClick={onSubscribe} 
+                 className="w-full sm:w-auto px-12 py-7 rounded-2xl font-black uppercase text-xs tracking-[0.2em] text-slate-950 shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3 btn-gold-shine"
+               >
+                 Experimentar grátis
+               </button>
                <button onClick={onAbout} className="w-full sm:w-auto px-12 py-7 bg-slate-900 border border-white/10 text-white rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-slate-800 transition-all flex items-center justify-center gap-3">
                  <Info className="w-4 h-4" /> Gestão de Horários
                </button>
@@ -299,6 +304,20 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onPrivacy, onTerms
         @keyframes modalScale {
           from { transform: scale(0.9) translateY(20px); opacity: 0; }
           to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes shine {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        .btn-gold-shine {
+          background: linear-gradient(90deg, #d4af37, #f9f295, #d4af37, #f9f295, #d4af37);
+          background-size: 200% auto;
+          animation: shine 3s linear infinite;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-gold-shine:hover {
+          filter: brightness(1.1);
+          transform: scale(1.02);
         }
         .text-gradient {
           background: linear-gradient(135deg, #10b981 0%, #a855f7 100%);

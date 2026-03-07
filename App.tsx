@@ -235,7 +235,7 @@ const App: React.FC = () => {
         const parsedSub = typeof sub === 'string' ? JSON.parse(sub) : (sub || {});
         if (parsedSub.isActive === false && profile.email !== 'master@digitalnexus.com' && profile.email !== 'izarelleBraga@gmail.com') {
           await supabase.auth.signOut();
-          setAuthError({ title: 'ACESSO BLOQUEADO', text: 'Subscrição inativa. Contacte a Digital Nexus Solutions Portugal.' });
+          setAuthError({ title: 'BEM-VINDO', text: 'Faça o login para aceder sua conta.' });
           setAppState('login');
           setAuthInitialized(true);
           return;
