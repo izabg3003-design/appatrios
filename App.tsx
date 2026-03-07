@@ -292,6 +292,8 @@ const App: React.FC = () => {
       {appState === 'login' && <LoginPage onLogin={() => {}} onBack={() => setAppState('landing')} t={t} externalError={authError} />}
       {appState === 'about-nexus' && <AboutNexusPage onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} />}
       
+      {user.id && <PublicSupportChat />}
+
       {['dashboard', 'finance', 'reports', 'accountant', 'settings', 'admin', 'vendor-detail', 'vendor-sales', 'support', 'user-support'].includes(appState) && (
         <div className="flex h-screen overflow-hidden relative">
           <Sidebar activeTab={appState} setActiveTab={handleTabChange} user={user} onLogout={handleLogout} t={t} hideValues={hideValues} togglePrivacy={() => setHideValues(!hideValues)} isPro={isPro} />
@@ -308,7 +310,7 @@ const App: React.FC = () => {
                 setRecords(prev => ({ ...prev, [r.date]: r }));
                 return true;
               }} t={t} hideValues={hideValues} isPro={isPro} />}
-              {appState === 'finance' && <FinancePage user={user} records={records} t={t} f={formatCurrency} />}
+              {appState === 'finance' && <FinancePage user={user} records={records} t={t} f={formatCurrency} isPro={isPro} />}
               {appState === 'reports' && <ReportsPage user={user} records={records} t={t} f={formatCurrency} isPro={isPro} />}
               {appState === 'accountant' && <AccountantPage user={user} records={records} t={t} f={formatCurrency} isPro={isPro} />}
               {appState === 'settings' && <SettingsPage user={user} setUser={async (updatedUser) => {
@@ -318,7 +320,7 @@ const App: React.FC = () => {
                 if (error) return false;
                 setUser(updatedUser);
                 return true;
-              }} t={t} hideValues={hideValues} />}
+              }} t={t} hideValues={hideValues} isPro={isPro} />}
               {appState === 'admin' && <AdminPage currentUser={user} f={formatCurrency} onLogout={handleLogout} t={t} onUpdateProfile={async (u) => { const { id, email, created_at, ...data } = u; const { error } = await supabase.from('profiles').update(data).eq('id', u.id); if (error) return false; return true; }} hideValues={hideValues} />}
               {appState === 'vendor-detail' && <VendorDetailPage vendorId={selectedVendorData || user.id!} currentUser={user} onBack={() => setAppState('admin')} f={formatCurrency} isVendorSelf={!selectedVendorData} />}
               {appState === 'vendor-sales' && <VendorSalesPage user={user} adminOverrideVendor={adminOverrideVendor} onBackToAdmin={() => setAppState('admin')} />}

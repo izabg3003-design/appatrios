@@ -27,9 +27,10 @@ interface Props {
   records: Record<string, WorkRecord>;
   t: (key: string) => any;
   f: (value: number) => string;
+  isPro?: boolean;
 }
 
-const FinancePage: React.FC<Props> = ({ user, records, t, f }) => {
+const FinancePage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const getNexusId = () => {
@@ -158,20 +159,40 @@ const FinancePage: React.FC<Props> = ({ user, records, t, f }) => {
            <p className="text-3xl font-black text-white">{summary.totalHours.toFixed(1)} <span className="text-xs text-slate-500">Horas</span></p>
         </div>
 
-        <div className="glass p-8 rounded-[2.5rem] space-y-4 border-white/5 group hover:border-emerald-500/30 transition-all">
+        <div className="glass p-8 rounded-[2.5rem] space-y-4 border-white/5 group hover:border-emerald-500/30 transition-all relative overflow-hidden">
            <div className="flex justify-between items-center">
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Horas Extras Acumuladas</span>
               <div className="p-3 rounded-2xl bg-slate-900 border border-white/5"><Zap className="w-5 h-5 text-emerald-400" /></div>
            </div>
-           <p className="text-3xl font-black text-white">{summary.totalExtraHours} <span className="text-xs text-slate-500">Extras</span></p>
+           <div className={!isPro ? "blur-md select-none" : ""}>
+             <p className="text-3xl font-black text-white">{summary.totalExtraHours} <span className="text-xs text-slate-500">Extras</span></p>
+           </div>
+           {!isPro && (
+             <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px]">
+               <div className="bg-amber-500/20 border border-amber-500/30 px-4 py-2 rounded-full flex items-center gap-2">
+                 <ShieldCheck className="w-3 h-3 text-amber-500" />
+                 <span className="text-[8px] font-black text-amber-500 uppercase tracking-widest">Nexus PRO</span>
+               </div>
+             </div>
+           )}
         </div>
 
-        <div className="glass p-8 rounded-[2.5rem] space-y-4 border-white/5 group hover:border-indigo-500/30 transition-all">
+        <div className="glass p-8 rounded-[2.5rem] space-y-4 border-white/5 group hover:border-indigo-500/30 transition-all relative overflow-hidden">
            <div className="flex justify-between items-center">
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Valor das Horas Extras</span>
               <div className="p-3 rounded-2xl bg-slate-900 border border-white/5"><DollarSign className="w-5 h-5 text-indigo-400" /></div>
            </div>
-           <p className="text-3xl font-black text-white">{f(summary.extraHoursValue)}</p>
+           <div className={!isPro ? "blur-md select-none" : ""}>
+             <p className="text-3xl font-black text-white">{f(summary.extraHoursValue)}</p>
+           </div>
+           {!isPro && (
+             <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px]">
+               <div className="bg-amber-500/20 border border-amber-500/30 px-4 py-2 rounded-full flex items-center gap-2">
+                 <ShieldCheck className="w-3 h-3 text-amber-500" />
+                 <span className="text-[8px] font-black text-amber-500 uppercase tracking-widest">Nexus PRO</span>
+               </div>
+             </div>
+           )}
         </div>
 
         <div className="glass p-8 rounded-[2.5rem] space-y-4 border-white/5 group hover:border-slate-500 transition-all">

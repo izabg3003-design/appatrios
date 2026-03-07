@@ -9,9 +9,10 @@ interface Props {
   setUser: (newProfile: UserProfile) => Promise<boolean>;
   t: (key: string) => any;
   hideValues?: boolean;
+  isPro?: boolean;
 }
 
-const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues }) => {
+const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const isMaster = user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com';
   const [formUser, setFormUser] = useState<UserProfile>(user);
@@ -179,9 +180,9 @@ const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues }) => {
           </div>
 
           {/* 3. CONFIGURAÇÃO DE HORAS EXTRAS */}
-          <div className="bg-slate-800/20 border border-slate-800 p-8 rounded-[2.5rem] space-y-6 shadow-xl">
+          <div className="bg-slate-800/20 border border-slate-800 p-8 rounded-[2.5rem] space-y-6 shadow-xl relative overflow-hidden">
             <h4 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-3"><Zap className="w-5 h-5 text-purple-400" />Configuração de Horas Extras</h4>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className={`grid md:grid-cols-3 gap-6 ${!isPro ? 'blur-md select-none pointer-events-none' : ''}`}>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-slate-500 uppercase ml-1">1° Hora Extra (%)</label>
                 <div className="relative">
@@ -219,6 +220,14 @@ const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues }) => {
                 </div>
               </div>
             </div>
+            {!isPro && (
+              <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px] z-10">
+                <div className="bg-amber-500/20 border border-amber-500/30 px-6 py-3 rounded-2xl flex items-center gap-3">
+                  <Crown className="w-5 h-5 text-amber-500" />
+                  <span className="text-xs font-black text-amber-500 uppercase tracking-[0.2em]">Nexus PRO Required</span>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 4. RETENÇÕES FISCAIS PERSONALIZADAS */}
