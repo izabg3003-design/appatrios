@@ -28,7 +28,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
     
     const fetchBanners = async () => {
       try {
-        const { data, error } = await supabase.from('app_banners').select('*').eq('is_active', true).order('created_at', { ascending: false });
+        const { data, error } = await supabase.from('app_banners').select('*').eq('is_active', true).eq('user_type', 'public').order('created_at', { ascending: false });
         if (!error && data && data.length > 0) {
           setActiveBanners(data);
           setTimeout(() => setShowBannerOverlay(true), 1500);

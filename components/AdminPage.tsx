@@ -557,9 +557,10 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                         <span className={`text-[9px] font-black px-3 py-1 rounded-full border ${
                           b.user_type === 'premium' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20' :
                           b.user_type === 'free' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
+                          b.user_type === 'public' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
                           'bg-slate-500/10 text-slate-400 border-slate-500/20'
                         }`}>
-                          {b.user_type === 'premium' ? 'PREMIUM' : b.user_type === 'free' ? 'GRATUITO' : 'TODOS'}
+                          {b.user_type === 'premium' ? 'PREMIUM' : b.user_type === 'free' ? 'GRATUITO' : b.user_type === 'public' ? 'PÚBLICO (PRÉ-LOGIN)' : 'TODOS'}
                         </span>
                       </td>
                       <td className="px-6 py-6 text-center">
@@ -787,9 +788,10 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                   <div className="space-y-2">
                     <label className="text-[10px] font-black text-slate-500 uppercase ml-2 tracking-widest">Público Alvo</label>
                     <select value={newBanner.user_type} onChange={e => setNewBanner({...newBanner, user_type: e.target.value as any})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl px-6 py-4 text-white font-bold outline-none focus:ring-1 focus:ring-rose-500 appearance-none">
-                       <option value="all">Todos os Usuários</option>
-                       <option value="free">Apenas Versão Gratuita</option>
-                       <option value="premium">Apenas Versão Premium</option>
+                       <option value="all">Todos os Usuários (Pós-Login)</option>
+                       <option value="free">Apenas Versão Gratuita (Pós-Login)</option>
+                       <option value="premium">Apenas Versão Premium (Pós-Login)</option>
+                       <option value="public">Antes do Login (Landing Page)</option>
                     </select>
                   </div>
                </div>
