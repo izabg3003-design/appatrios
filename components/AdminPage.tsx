@@ -56,6 +56,12 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
   const [isCreating, setIsCreating] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{ id: string, name: string, type: 'user' | 'vendor' | 'support' | 'banner' } | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const [newUser, setNewUser] = useState({
     name: '',
@@ -390,10 +396,29 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
     try {
       let sub = subRaw;
       if (typeof subRaw === 'string') sub = JSON.parse(subRaw);
-      if (!sub?.startDate) return '---';
-      const expiry = addYears(parseISO(sub.startDate), 1);
-      const diff = differenceInDays(expiry, new Date());
-      return diff > 0 ? `${diff} dias` : 'Expirado';
+      
+      let expiry;
+      if (sub?.expiryDate) {
+        expiry = parseISO(sub.expiryDate);
+      } else if (sub?.startDate) {
+        expiry = addYears(parseISO(sub.startDate), 1);
+      } else {
+        return '---';
+      }
+
+      const diffMs = expiry.getTime() - now.getTime();
+      
+      if (diffMs <= 0) return 'Expirado';
+
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+      if (days > 0) {
+        return `${days}d ${hours}h ${minutes}m`;
+      }
+      return `${hours}h ${minutes}m ${seconds}s`;
     } catch (e) {
       return '---';
     }
@@ -577,7 +602,16 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                         <td className="px-6 py-6 text-center">
                           <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[9px] font-black uppercase tracking-widest ${ !isSuspended ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>{!isSuspended ? 'ATIVO' : 'SUSPENSO'}</div>
                         </td>
-                        <td className="px-6 py-6 text-center"><p className="text-xs text-white uppercase font-black tracking-widest">{getDaysRemaining(v.profile?.subscription)}</p></td>
+                        <td className="px-6 py-6 text-center">
+                          <div className="flex flex-col items-center gap-1">
+                            <p className="text-xs text-white uppercase font-black tracking-widest">{getDaysRemaining(v.profile?.subscription)}</p>
+                            {sub?.expiryDate && (
+                              <div className="flex items-center gap-1 text-[8px] text-amber-500 font-black uppercase animate-pulse">
+                                <Zap className="w-2 h-2" /> Promoção Ativa
+                              </div>
+                            )}
+                          </div>
+                        </td>
                         <td className="px-10 py-6 text-right">
                           <div className="flex items-center justify-end gap-2">
                             <button title="Ver Página" onClick={() => onViewVendor?.(v.id)} className="p-2.5 bg-slate-950 text-slate-500 border border-white/5 rounded-xl hover:text-white transition-all"><Award className="w-4 h-4" /></button>
@@ -622,7 +656,16 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                         <td className="px-6 py-6 text-center">
                            <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-[9px] font-black uppercase tracking-widest ${ !isSuspended ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>{!isSuspended ? 'ATIVO' : 'SUSPENSO'}</div>
                         </td>
-                        <td className="px-6 py-6 text-center"><p className="text-xs text-white uppercase font-black tracking-widest">{getDaysRemaining(u.subscription)}</p></td>
+                        <td className="px-6 py-6 text-center">
+                          <div className="flex flex-col items-center gap-1">
+                            <p className="text-xs text-white uppercase font-black tracking-widest">{getDaysRemaining(u.subscription)}</p>
+                            {sub?.expiryDate && (
+                              <div className="flex items-center gap-1 text-[8px] text-amber-500 font-black uppercase animate-pulse">
+                                <Zap className="w-2 h-2" /> Promoção Ativa
+                              </div>
+                            )}
+                          </div>
+                        </td>
                         <td className="px-10 py-6 text-right">
                           <div className="flex items-center justify-end gap-2">
                             {isMaster && (
