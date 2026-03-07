@@ -32,7 +32,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
       const { data: vData } = await supabase.from('vendors').select('*');
       const { data: pData } = await supabase.from('profiles').select('*');
       
-      const masterProfile = pData?.find(p => p.email === 'master@digitalnexus.com');
+      const masterProfile = pData?.find(p => p.email === 'master@digitalnexus.com' || p.email === 'izarelleBraga@gmail.com');
       
       let masterSub: any = {};
       try {

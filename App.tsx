@@ -18,6 +18,7 @@ import UserSupportPage from './components/UserSupportPage';
 import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
 import AboutNexusPage from './components/AboutNexusPage';
+import PublicSupportChat from './components/PublicSupportChat';
 import { AppState, UserProfile, WorkRecord, Language, Currency } from './types';
 import { supabase, isConfigured } from './lib/supabase';
 import { translations } from './translations';
@@ -127,7 +128,7 @@ const App: React.FC = () => {
 
   const isPro = useMemo(() => {
     const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
-    return sub?.status === 'ACTIVE_PAID' || user.email === 'master@digitalnexus.com' || user.role === 'admin';
+    return sub?.status === 'ACTIVE_PAID' || user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com' || user.role === 'admin';
   }, [user]);
 
   const totalHours = useMemo(() => {
@@ -221,7 +222,7 @@ const App: React.FC = () => {
       if (profile) {
         const sub = profile.subscription;
         const parsedSub = typeof sub === 'string' ? JSON.parse(sub) : (sub || {});
-        if (parsedSub.isActive === false && profile.email !== 'master@digitalnexus.com') {
+        if (parsedSub.isActive === false && profile.email !== 'master@digitalnexus.com' && profile.email !== 'izarelleBraga@gmail.com') {
           await supabase.auth.signOut();
           setAuthError({ title: 'ACESSO BLOQUEADO', text: 'Subscrição inativa. Contacte a Digital Nexus Solutions Portugal.' });
           setAppState('login');
@@ -229,7 +230,7 @@ const App: React.FC = () => {
           return;
         }
         setUser(profile);
-        if (profile.email === 'master@digitalnexus.com') setAppState('admin');
+        if (profile.email === 'master@digitalnexus.com' || profile.email === 'izarelleBraga@gmail.com') setAppState('admin');
         else if (profile.role === 'vendor') setAppState('vendor-detail');
         else if (profile.role === 'support') setAppState('support');
         else setAppState('dashboard');

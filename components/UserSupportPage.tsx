@@ -55,7 +55,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
       const { count, error } = await supabase
         .from('profiles')
         .select('*', { count: 'exact', head: true })
-        .or(`role.in.("support","admin"),email.eq.master@digitalnexus.com`)
+        .or(`role.in.("support","admin"),email.eq.master@digitalnexus.com,email.eq.izarelleBraga@gmail.com`)
         .gt('updated_at', fiveMinutesAgo);
       
       if (error) throw error;

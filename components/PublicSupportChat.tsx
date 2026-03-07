@@ -48,7 +48,7 @@ const PublicSupportChat: React.FC = () => {
       const { count } = await supabase
         .from('profiles')
         .select('*', { count: 'exact', head: true })
-        .or(`role.in.(support,admin),email.eq.master@digitalnexus.com`)
+        .or(`role.in.(support,admin),email.eq.master@digitalnexus.com,email.eq.izarelleBraga@gmail.com`)
         .gt('updated_at', fiveMinutesAgo);
       
       setIsAgentsOnline((count || 0) > 0);

@@ -13,7 +13,7 @@ interface Props {
 
 const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const isMaster = user.email === 'master@digitalnexus.com';
+  const isMaster = user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com';
   const [formUser, setFormUser] = useState<UserProfile>(user);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);

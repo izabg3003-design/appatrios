@@ -38,7 +38,7 @@ const generateVendorCode = () => {
 };
 
 const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, onViewVendorSales, t, onUpdateProfile, hideValues }) => {
-  const isMaster = currentUser?.email === 'master@digitalnexus.com';
+  const isMaster = currentUser?.email === 'master@digitalnexus.com' || currentUser?.email === 'izarelleBraga@gmail.com';
   const [activeSubTab, setActiveSubTab] = useState<'users' | 'vendors' | 'reports' | 'analytics' | 'support' | 'profile' | 'banners' | 'ledger' | 'notifications'>('users');
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [vendors, setVendors] = useState<any[]>([]);
