@@ -3,7 +3,7 @@ import {
   ShieldCheck, Search, Loader2, RefreshCw, UserPlus, X, Trash2, ShieldAlert, 
   Phone, Hash, User, ShoppingCart, Mail, Settings2, Save, Euro, CheckCircle, 
   Fingerprint, BriefcaseBusiness, LifeBuoy, Eye, Clock, Lock, Tag, UserPlus2, 
-  Percent, CalendarDays, Activity, Settings, Megaphone, Plus, Power, 
+  Percent, CalendarDays, Activity, Settings, Megaphone, Plus, Power, Zap,
   Image as ImageIcon, Upload, ExternalLink, Database, Copy, Award, KeySquare, 
   BarChart3, TrendingUp, Calendar, BellRing, Smartphone, Webhook
 } from 'lucide-react';
@@ -47,6 +47,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [updatingId, setUpdatingId] = useState<string | null>(null);
+  const [promotingUser, setPromotingUser] = useState<UserProfile | null>(null);
   
   const [showAddUser, setShowAddUser] = useState(false);
   const [showAddVendor, setShowAddVendor] = useState(false);
@@ -304,6 +305,37 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
       await fetchData();
     } catch (e: any) {
       alert(`Erro ao mudar status: ${e.message}`);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
+  const handlePromoteUser = async (userId: string, days: number) => {
+    setUpdatingId(userId);
+    try {
+      const { data: profile } = await supabase.from('profiles').select('subscription').eq('id', userId).single();
+      let sub: any = {};
+      if (typeof profile?.subscription === 'string') sub = JSON.parse(profile.subscription);
+      else sub = profile?.subscription || {};
+
+      const expiryDate = new Date();
+      expiryDate.setDate(expiryDate.getDate() + days);
+
+      const updatedSub = { 
+        ...sub, 
+        status: 'ACTIVE_PAID', 
+        isActive: true,
+        expiryDate: expiryDate.toISOString(),
+        promotionDays: days
+      };
+
+      const { error } = await supabase.from('profiles').update({ subscription: updatedSub }).eq('id', userId);
+      if (error) throw error;
+      
+      setPromotingUser(null);
+      await fetchData();
+    } catch (e: any) {
+      alert(`Erro ao promover: ${e.message}`);
     } finally {
       setUpdatingId(null);
     }
@@ -593,6 +625,15 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                         <td className="px-6 py-6 text-center"><p className="text-xs text-white uppercase font-black tracking-widest">{getDaysRemaining(u.subscription)}</p></td>
                         <td className="px-10 py-6 text-right">
                           <div className="flex items-center justify-end gap-2">
+                            {isMaster && (
+                              <button 
+                                title="Remover Restrições" 
+                                onClick={() => setPromotingUser(u)} 
+                                className="p-2.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-xl hover:bg-amber-500 hover:text-white transition-all"
+                              >
+                                <Zap className="w-4 h-4" />
+                              </button>
+                            )}
                             <button title={!isSuspended ? "Desativar" : "Ativar"} onClick={() => handleToggleUserStatus(u)} disabled={updatingId === u.id} className={`p-2.5 rounded-xl transition-all ${!isSuspended ? 'bg-slate-950 text-slate-500' : 'bg-green-600/20 text-green-500'}`}>
                               <Power className={`w-4 h-4 ${updatingId === u.id ? 'animate-spin' : ''}`} />
                             </button>
@@ -605,6 +646,46 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                 )}
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: REMOVER RESTRIÇÕES */}
+      {promotingUser && (
+        <div className="fixed inset-0 z-[1100] flex items-center justify-center p-6 backdrop-blur-xl bg-slate-950/90">
+          <div className="bg-slate-900 border border-amber-500/30 w-full max-w-md rounded-[3rem] overflow-hidden shadow-2xl animate-[modalScale_0.3s_ease-out]">
+            <div className="p-8 bg-amber-600/10 border-b border-amber-500/20 flex justify-between items-center">
+              <div className="flex items-center gap-3">
+                 <Zap className="w-6 h-6 text-amber-400" />
+                 <h3 className="text-xl font-black text-white italic uppercase tracking-tighter">Remover <span className="text-amber-400">Restrições</span></h3>
+              </div>
+              <button onClick={() => setPromotingUser(null)} className="text-slate-500 hover:text-white transition-colors"><X className="w-6 h-6" /></button>
+            </div>
+            
+            <div className="p-10 space-y-6">
+               <p className="text-xs text-slate-400 text-center font-medium leading-relaxed">Selecione o período para libertar todas as funcionalidades premium para <strong>{promotingUser.name}</strong>.</p>
+               
+               <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: '3 Dias', val: 3 },
+                    { label: '7 Dias', val: 7 },
+                    { label: '15 Dias', val: 15 },
+                    { label: '30 Dias', val: 30 },
+                    { label: '150 Dias', val: 150 },
+                    { label: '1 Ano', val: 365 }
+                  ].map((opt) => (
+                    <button 
+                      key={opt.val}
+                      onClick={() => handlePromoteUser(promotingUser.id!, opt.val)}
+                      disabled={updatingId === promotingUser.id}
+                      className="py-4 bg-slate-950 border border-slate-800 rounded-2xl text-white font-black uppercase text-[10px] tracking-widest hover:bg-amber-600 hover:text-slate-950 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                    >
+                      {updatingId === promotingUser.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <ShieldCheck className="w-3 h-3" />}
+                      {opt.label}
+                    </button>
+                  ))}
+               </div>
+            </div>
           </div>
         </div>
       )}

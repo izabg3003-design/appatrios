@@ -128,7 +128,18 @@ const App: React.FC = () => {
 
   const isPro = useMemo(() => {
     const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
-    return sub?.status === 'ACTIVE_PAID' || user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com' || user.role === 'admin';
+    const isPaid = sub?.status === 'ACTIVE_PAID';
+    const isMaster = user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com';
+    const isAdmin = user.role === 'admin';
+    
+    if (isMaster || isAdmin) return true;
+    if (!isPaid) return false;
+    
+    if (sub?.expiryDate) {
+      return new Date(sub.expiryDate) > new Date();
+    }
+    
+    return true;
   }, [user]);
 
   const totalHours = useMemo(() => {
