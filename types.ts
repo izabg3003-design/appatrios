@@ -103,4 +103,4 @@ export interface FinanceSummary {
   ivaTotal: number;
 }
 
-export type AppState = 'splash' | 'language-gate' | 'landing' | 'subscription' | 'login' | 'dashboard' | 'finance' | 'reports' | 'settings' | 'admin' | 'accountant' | 'vendor-detail' | 'vendor-sales' | 'support' | 'user-support' | 'privacy' | 'terms' | 'about-nexus';
+export type AppState = 'splash' | 'language-gate' | 'landing' | 'subscription' | 'login' | 'dashboard' | 'finance' | 'reports' | 'settings' | 'admin' | 'accountant' | 'vendor-detail' | 'vendor-sales' | 'support' | 'user-support' | 'privacy' | 'terms' | 'about-atrioswork';

@@ -1,6 +1,6 @@
 {
-  "name": "NexusTime - AtriosWork",
-  "short_name": "NexusTime",
+  "name": "AtriosWork",
+  "short_name": "AtriosWork",
   "description": "Software Profissional de Controlo de Horas e Gestão de Assiduidade em Portugal.",
   "start_url": "./index.html",
   "display": "standalone",

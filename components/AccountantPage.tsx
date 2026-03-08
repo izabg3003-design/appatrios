@@ -101,7 +101,7 @@ const AccountantPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
   return (
     <div className="space-y-8 animate-[fadeIn_0.5s_ease-out] pb-32">
       <div className="flex justify-between items-center no-print">
-        <h2 className="text-2xl font-black text-white uppercase italic tracking-tighter">NEXUS<span className="text-green-400">_LEDGER</span></h2>
+        <h2 className="text-2xl font-black text-white uppercase italic tracking-tighter">ATRIOSWORK<span className="text-green-400">_LEDGER</span></h2>
         <button onClick={handlePrint} className="bg-green-600 hover:bg-green-500 text-slate-950 font-black px-6 py-3 rounded-xl flex items-center gap-2 text-[10px] uppercase tracking-widest transition-all">
           <Printer className="w-4 h-4" /> Descarregar PDF (A4)
         </button>
@@ -111,7 +111,7 @@ const AccountantPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
         <header className="flex flex-col md:flex-row justify-between items-start border-b border-slate-100 pb-8 mb-10 gap-6 print:border-black">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center text-white font-black text-xs">DX</div>
+              <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center text-white font-black text-xs">AW</div>
               <div>
                 <h1 className="font-black text-xl uppercase tracking-tighter leading-none">AtriosWork</h1>
                 <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mt-1">Infraestrutura Contabilística v16.0</p>
@@ -212,7 +212,7 @@ const AccountantPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
         <footer className="mt-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 print:opacity-100 print:border-black print:mt-12">
           <div className="flex items-center gap-3">
             <Building2 className="w-4 h-4" />
-            <p className="text-[7px] font-black uppercase tracking-[0.2em]">Auditoria Certificada NexusTime Portugal • v16.0.4</p>
+            <p className="text-[7px] font-black uppercase tracking-[0.2em]">Auditoria Certificada AtriosWork Portugal • v16.0.4</p>
           </div>
           <div className="text-[7px] font-bold uppercase tracking-[0.4em]">AtriosWork — Lisboa 2026</div>
         </footer>

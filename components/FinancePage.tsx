@@ -33,7 +33,7 @@ interface Props {
 const FinancePage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
-  const getNexusId = () => {
+  const getAtriosWorkId = () => {
     try {
       const sub = user.subscription;
       if (!sub) return user.id?.substring(0, 8) || '---';
@@ -117,8 +117,8 @@ const FinancePage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
       {/* Header com Navegação Temporal */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <h2 className="text-3xl font-black text-white italic tracking-tighter uppercase">NEXUS<span className="text-purple-400">FINANCE</span></h2>
-          <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mt-1">Monitorização de Performance Financeira — #{getNexusId()}</p>
+          <h2 className="text-3xl font-black text-white italic tracking-tighter uppercase">ATRIOSWORK<span className="text-purple-400">FINANCE</span></h2>
+          <p className="text-slate-500 text-[10px] font-black uppercase tracking-widest mt-1">Monitorização de Performance Financeira — #{getAtriosWorkId()}</p>
         </div>
         <div className="flex items-center gap-2 glass px-4 py-2 rounded-[1.5rem] border-white/10">
            <button onClick={() => setCurrentDate(subMonths(currentDate, 1))} className="p-2 hover:bg-white/10 rounded-xl transition-all"><ChevronLeft className="w-5 h-5 text-slate-400" /></button>
@@ -171,7 +171,7 @@ const FinancePage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
              <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px]">
                <div className="bg-amber-500/20 border border-amber-500/30 px-4 py-2 rounded-full flex items-center gap-2">
                  <ShieldCheck className="w-3 h-3 text-amber-500" />
-                 <span className="text-[8px] font-black text-amber-500 uppercase tracking-widest">Nexus PRO</span>
+                 <span className="text-[8px] font-black text-amber-500 uppercase tracking-widest">AtriosWork PRO</span>
                </div>
              </div>
            )}
@@ -189,7 +189,7 @@ const FinancePage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
              <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px]">
                <div className="bg-amber-500/20 border border-amber-500/30 px-4 py-2 rounded-full flex items-center gap-2">
                  <ShieldCheck className="w-3 h-3 text-amber-500" />
-                 <span className="text-[8px] font-black text-amber-500 uppercase tracking-widest">Nexus PRO</span>
+                 <span className="text-[8px] font-black text-amber-500 uppercase tracking-widest">AtriosWork PRO</span>
                </div>
              </div>
            )}

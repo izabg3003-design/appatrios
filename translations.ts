@@ -1,4 +1,4 @@
-export const nexusCurrencies = [
+export const atriosworkCurrencies = [
   { code: 'EUR', name: 'Euro', symbol: '€' }
 ];
 
@@ -19,10 +19,10 @@ export const translations: Record<string, any> = {
     landing: {
       hero: "TRANSFORME HORAS EM",
       heroHighlight: "LUCRO REAL.",
-      subhero: "O NexusTime Pro é o app de controlo de horas ideal para registar horas extra, organizar pagamentos e gerir o seu horário de trabalho em Portugal com precisão absoluta.",
+      subhero: "O AtriosWork Pro é o app de controlo de horas ideal para registar horas extra, organizar pagamentos e gerir o seu horário de trabalho em Portugal com precisão absoluta.",
       badge: "AtriosWork • Portugal 2026",
       painTitle: "Problemas no Registo",
-      solutionTitle: "Solução Digital Nexus",
+      solutionTitle: "Solução AtriosWork",
       pains: [
         "Não me pagaram horas extra por falta de prova.",
         "Caos na gestão de horas trabalhadas mensalmente.",
@@ -38,7 +38,7 @@ export const translations: Record<string, any> = {
         { title: "Controlo de Horas Extra", desc: "Prove cada minuto trabalhado e garanta o seu pagamento correto." },
         { title: "Cálculo de IRS Portugal", desc: "Cálculo instantâneo de retenções para recibos verdes e contratos." },
         { title: "Sincronização Cloud", desc: "Substitua a folha de horas manual por segurança digital total na Europa." },
-        { title: "Suporte Nexus Elite", desc: "Ajudamos com dúvidas sobre faturação e horas trabalhadas em PT." },
+        { title: "Suporte AtriosWork Elite", desc: "Ajudamos com dúvidas sobre faturação e horas trabalhadas em PT." },
         { title: "Trabalho por Turnos", desc: "Otimizado para quem trabalha com horários rotativos ou flexíveis em Portugal." }
       ],
       promo: {
@@ -62,7 +62,7 @@ export const translations: Record<string, any> = {
       final: {
         title: "PARE DE PERDER",
         highlight: "HORAS EXTRAS.",
-        cta: "Ativar Nexus Pro"
+        cta: "Ativar AtriosWork Pro"
       },
       footer: {
         note: "AtriosWork. Gestão de Horas de Elite para Portugal.",
@@ -72,7 +72,7 @@ export const translations: Record<string, any> = {
     },
     login: {
       secureAccess: "ACESSO SEGURO",
-      idNexus: "ID Nexus / E-mail",
+      idAtriosWork: "ID AtriosWork / E-mail",
       securityKey: "Palavra-passe",
       validateAccess: "Entrar no App",
       platformNote: "Plataforma AtriosWork",
@@ -84,7 +84,7 @@ export const translations: Record<string, any> = {
     },
     dashboard: {
       activeOp: "Registo Ativo",
-      shift: "Turno Nexus",
+      shift: "Turno AtriosWork",
       entry: "Entrada",
       exit: "Saída",
       location: "Local / Serviço",

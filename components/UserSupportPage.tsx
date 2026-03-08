@@ -55,7 +55,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
       const { count, error } = await supabase
         .from('profiles')
         .select('*', { count: 'exact', head: true })
-        .or(`role.in.("support","admin"),email.eq.master@digitalnexus.com,email.eq.izarelleBraga@gmail.com`)
+        .or(`role.in.("support","admin"),email.eq.master@atrioswork.com,email.eq.izarelleBraga@gmail.com`)
         .gt('updated_at', fiveMinutesAgo);
       
       if (error) throw error;
@@ -116,7 +116,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
           setMessages([{ 
             id: 'welcome', 
             role: 'ai', 
-            text: "Olá! Sou a assistente da AtriosWork. Como posso ajudar com o seu controlo de horas no NexusTime?", 
+            text: "Olá! Sou a assistente da AtriosWork. Como posso ajudar com o seu controlo de horas no AtriosWork?", 
             timestamp: new Date() 
           }]);
         }
@@ -134,7 +134,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
   useEffect(() => {
     if (!user.id) return;
 
-    const channel = supabase.channel(`nexus_chat_sync_${user.id}`)
+    const channel = supabase.channel(`atrioswork_chat_sync_${user.id}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `user_id=eq.${user.id}` }, payload => {
         const msg = payload.new;
         if (!msg || !msg.id) return;
@@ -238,14 +238,14 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
         const chatHistory = firstUserIdx !== -1 ? rawHistory.slice(firstUserIdx) : [];
 
         const systemInstruction = `
-          Tu és a assistente virtual da AtriosWork, especialista no app NexusTime.
+          Tu és a assistente virtual da AtriosWork, especialista no AtriosWork.
           Sê profissional, direta e prestativa.
-          Informações do App NexusTime:
+          Informações do AtriosWork:
           - Função: Controlo de horas profissional (Entrada, Saída, Pausa Almoço, Horas Extras H1/H2/H3).
           - Gestão Financeira: Cálculo automático de IRS, Segurança Social e IVA (para freelancers).
           - Relatórios: Geração de relatórios mensais e anuais em PDF (Ledger) para contabilistas.
           - Parceiros: Sistema de rede de vendedores parceiros com códigos de desconto e comissões.
-          - Segurança: Dados encriptados na Nexus Cloud.
+          - Segurança: Dados encriptados na AtriosWork Cloud.
           Se o utilizador perguntar sobre a empresa, explica que a AtriosWork é uma infraestrutura de inteligência financeira e soberania temporal.
           Se não souberes algo, sugere falar com um atendente humano usando o botão de suporte.
         `;
@@ -325,7 +325,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
       const sysMsg: Message = { 
         id: 'sys-' + Date.now(), 
         role: 'support', 
-        text: isOnline ? "Conectando-o a um agente da Digital Nexus. Por favor, aguarde um momento." : "De momento todos os nossos agentes estão ocupados. Deixe a sua mensagem e responderemos assim que possível.", 
+        text: isOnline ? "Conectando-o a um agente da AtriosWork. Por favor, aguarde um momento." : "De momento todos os nossos agentes estão ocupados. Deixe a sua mensagem e responderemos assim que possível.", 
         timestamp: new Date() 
       };
       
@@ -346,7 +346,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
             <LifeBuoy className="w-6 h-6 text-blue-400" />
           </div>
           <div>
-            <h2 className="text-xl font-black text-white italic tracking-tighter uppercase">Nexus <span className="text-blue-400">Support</span></h2>
+            <h2 className="text-xl font-black text-white italic tracking-tighter uppercase">AtriosWork <span className="text-blue-400">Support</span></h2>
             <div className="flex items-center gap-2 mt-1">
               {isHumanSupportActive ? (
                 <>
@@ -356,7 +356,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
               ) : (
                 <>
                   <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Assistente Nexus AI Ativa</span>
+                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Assistente AtriosWork AI Ativa</span>
                 </>
               )}
             </div>

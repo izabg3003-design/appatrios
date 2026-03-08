@@ -65,7 +65,7 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
           }
         }
       } catch (e) {
-        console.warn("Nexus Post-Login Banner: Erro ao carregar.");
+        console.warn("AtriosWork Post-Login Banner: Erro ao carregar.");
       }
     };
 
@@ -91,7 +91,7 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
   const dateKey = useMemo(() => format(selectedDate, 'yyyy-MM-dd'), [selectedDate]);
   const hasExistingRecord = !!records[dateKey];
 
-  const getNexusId = () => {
+  const getAtriosWorkId = () => {
     if (hideValues) return "••••••••";
     try {
       const sub = user.subscription;
@@ -214,7 +214,7 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
                     </button>
                  )}
               </div>
-              <p className="text-slate-600 font-black text-[9px] uppercase tracking-[0.3em]">Digital Nexus Intelligence Protocol</p>
+              <p className="text-slate-600 font-black text-[9px] uppercase tracking-[0.3em]">AtriosWork Intelligence Protocol</p>
             </div>
           )}
         </div>
@@ -271,13 +271,13 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
               {format(new Date(), 'EEEE, dd MMM', { locale: currentLocale })}
             </p>
             <p className="text-[9px] text-emerald-400 font-mono opacity-60 mt-1 leading-none">
-              #{getNexusId()}
+              #{getAtriosWorkId()}
             </p>
           </div>
         </div>
         <div className={`flex items-center gap-2 ${isPro ? 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20' : 'text-amber-400 bg-amber-400/10 border-amber-400/20'} px-4 py-2 rounded-full border`}>
           <TrendingUp className="w-3 h-3" />
-          <span className="text-[8px] font-black uppercase tracking-widest">Live Nexus {isPro ? 'PRO' : 'FREE'}</span>
+          <span className="text-[8px] font-black uppercase tracking-widest">Live AtriosWork {isPro ? 'PRO' : 'FREE'}</span>
         </div>
       </div>
 

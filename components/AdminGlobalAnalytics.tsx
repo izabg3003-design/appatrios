@@ -32,7 +32,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
       const { data: vData } = await supabase.from('vendors').select('*');
       const { data: pData } = await supabase.from('profiles').select('*');
       
-      const masterProfile = pData?.find(p => p.email === 'master@digitalnexus.com' || p.email === 'izarelleBraga@gmail.com');
+      const masterProfile = pData?.find(p => p.email === 'master@atrioswork.com' || p.email === 'izarelleBraga@gmail.com');
       
       let masterSub: any = {};
       try {
@@ -173,7 +173,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
 
   const handlePrint = () => {
     const originalTitle = document.title;
-    document.title = `NEXUS_GLOBAL_ANALYTICS_${new Date().getFullYear()}`;
+    document.title = `ATRIOSWORK_GLOBAL_ANALYTICS_${new Date().getFullYear()}`;
     setTimeout(() => {
       window.print();
       document.title = originalTitle;
@@ -218,7 +218,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
             { label: 'Taxas Stripe', val: f(stats.totalStripeFees), color: 'rose-400' },
             { label: 'Comissão Venda', val: f(stats.totalComm), color: 'amber-400' },
             { label: 'Descontos Online', val: f(stats.totalDiscounts), color: 'pink-400' },
-            { label: 'Líquido Nexus', val: f(stats.totalNetProfit), color: 'emerald-400', special: true },
+            { label: 'Líquido AtriosWork', val: f(stats.totalNetProfit), color: 'emerald-400', special: true },
           ].map((item, i) => (
             <div key={i} className={`bg-slate-800/20 border ${item.special ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-slate-800'} p-5 rounded-[2rem] shadow-lg print:border-black print:bg-white`}>
               <p className="text-[8px] font-black text-slate-500 uppercase tracking-widest mb-1 print:text-black">{item.label}</p>

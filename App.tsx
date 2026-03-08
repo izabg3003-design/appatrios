@@ -17,7 +17,7 @@ import SupportPage from './components/SupportPage';
 import UserSupportPage from './components/UserSupportPage';
 import PrivacyPage from './components/PrivacyPage';
 import TermsPage from './components/TermsPage';
-import AboutNexusPage from './components/AboutNexusPage';
+import AboutAtriosWorkPage from './components/AboutAtriosWorkPage';
 import PublicSupportChat from './components/PublicSupportChat';
 import { AppState, UserProfile, WorkRecord, Language, Currency } from './types';
 import { supabase, isConfigured } from './lib/supabase';
@@ -37,7 +37,7 @@ declare global {
 }
 
 const DEFAULT_USER: UserProfile = {
-  name: 'Membro Nexus',
+  name: 'Membro AtriosWork',
   email: '',
   photo: null,
   hourlyRate: 10,
@@ -73,7 +73,7 @@ const PremiumModal: React.FC<{ isOpen: boolean; onClose: () => void; onUpgrade: 
 
             <div className="space-y-2">
               <h2 className="text-3xl md:text-4xl font-black text-white italic uppercase tracking-tighter leading-none">
-                Nexus <span className="text-purple-400">Premium</span>
+                AtriosWork <span className="text-purple-400">Premium</span>
               </h2>
               <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Eleve a sua produtividade ao próximo nível</p>
             </div>
@@ -130,7 +130,7 @@ const App: React.FC = () => {
   const isPro = useMemo(() => {
     const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
     const isPaid = sub?.status === 'ACTIVE_PAID';
-    const isMaster = user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com';
+    const isMaster = user.email === 'master@atrioswork.com' || user.email === 'izarelleBraga@gmail.com';
     const isAdmin = user.role === 'admin';
     
     if (isMaster || isAdmin) return true;
@@ -157,7 +157,7 @@ const App: React.FC = () => {
   }, [records]);
 
   // Lista de estados considerados "Públicos" (Antes do Login)
-  const PUBLIC_STATES: AppState[] = ['landing', 'privacy', 'terms', 'subscription', 'login', 'about-nexus', 'splash', 'language-gate'];
+  const PUBLIC_STATES: AppState[] = ['landing', 'privacy', 'terms', 'subscription', 'login', 'about-atrioswork', 'splash', 'language-gate'];
 
   useEffect(() => {
     const isPublicPage = PUBLIC_STATES.includes(appState);
@@ -236,7 +236,7 @@ const App: React.FC = () => {
       if (profile) {
         const sub = profile.subscription;
         const parsedSub = typeof sub === 'string' ? JSON.parse(sub) : (sub || {});
-        if (parsedSub.isActive === false && profile.email !== 'master@digitalnexus.com' && profile.email !== 'izarelleBraga@gmail.com') {
+        if (parsedSub.isActive === false && profile.email !== 'master@atrioswork.com' && profile.email !== 'izarelleBraga@gmail.com') {
           await supabase.auth.signOut();
           setAuthError({ title: 'BEM-VINDO', text: 'Faça o login para aceder sua conta.' });
           setAppState('login');
@@ -244,7 +244,7 @@ const App: React.FC = () => {
           return;
         }
         setUser(profile);
-        if (profile.email === 'master@digitalnexus.com' || profile.email === 'izarelleBraga@gmail.com') setAppState('admin');
+        if (profile.email === 'master@atrioswork.com' || profile.email === 'izarelleBraga@gmail.com') setAppState('admin');
         else if (profile.role === 'vendor') setAppState('vendor-detail');
         else if (profile.role === 'support') setAppState('support');
         else setAppState('dashboard');
@@ -315,7 +315,7 @@ const App: React.FC = () => {
           setLang={setSystemLang} 
           onPrivacy={() => setAppState('privacy')} 
           onTerms={() => setAppState('terms')} 
-          onAbout={() => setAppState('about-nexus')} 
+          onAbout={() => setAppState('about-atrioswork')} 
         />
       )}
       {appState === 'privacy' && <PrivacyPage onBack={() => setAppState('landing')} />}
@@ -330,7 +330,7 @@ const App: React.FC = () => {
           initialRegisterMode={loginInRegisterMode}
         />
       )}
-      {appState === 'about-nexus' && <AboutNexusPage onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} />}
+      {appState === 'about-atrioswork' && <AboutAtriosWorkPage onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} />}
       
       {user.id && <PublicSupportChat />}
 

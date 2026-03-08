@@ -31,7 +31,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
     if (!silent) setLoading(true);
     
     try {
-      addLog("Nexus Cloud Global Sync...");
+      addLog("AtriosWork Cloud Global Sync...");
       
       const [pRes, rRes] = await Promise.all([
         supabase.from('profiles').select('*'),
@@ -101,7 +101,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
       addLog(`Métricas globais atualizadas: ${rawRecords.length} registos.`);
 
     } catch (error: any) {
-      addLog("Erro na rede Nexus.");
+      addLog("Erro na rede AtriosWork.");
     } finally {
       setLoading(false);
     }
@@ -109,7 +109,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
 
   useEffect(() => {
     syncGlobalLedger();
-    const channel = supabase.channel('nexus_ops_live').on('postgres_changes', { event: '*', schema: 'public', table: 'work_records' }, () => syncGlobalLedger(true)).subscribe();
+    const channel = supabase.channel('atrioswork_ops_live').on('postgres_changes', { event: '*', schema: 'public', table: 'work_records' }, () => syncGlobalLedger(true)).subscribe();
     return () => { supabase.removeChannel(channel); };
   }, [syncGlobalLedger]);
 
@@ -131,7 +131,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
     return (
       <div className="h-[60vh] flex flex-col items-center justify-center space-y-6">
         <Loader2 className="w-16 h-16 text-indigo-500 animate-spin" />
-        <p className="text-[10px] font-black text-white uppercase tracking-[0.4em] animate-pulse">Sincronizando Nexus Management...</p>
+        <p className="text-[10px] font-black text-white uppercase tracking-[0.4em] animate-pulse">Sincronizando AtriosWork Management...</p>
       </div>
     );
   }
@@ -204,7 +204,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
             </h3>
             <div className="flex items-center gap-2">
                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-               <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest italic">Live Nexus Intelligence</span>
+               <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest italic">Live AtriosWork Intelligence</span>
             </div>
          </div>
          
@@ -294,9 +294,9 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
          <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest text-center opacity-40">Métricas consolidadas de faturamento e produtividade na AtriosWork.</p>
       </div>
 
-      {/* NEXUS LOGS */}
+      {/* ATRIOSWORK LOGS */}
       <div className="p-6 bg-black/40 border border-slate-800 rounded-3xl space-y-3">
-         <p className="text-[8px] font-black text-slate-600 uppercase tracking-widest">Nexus Operation History</p>
+         <p className="text-[8px] font-black text-slate-600 uppercase tracking-widest">AtriosWork Operation History</p>
          <div className="space-y-1">
             {debugLog.map((log, i) => (
               <p key={i} className="text-[9px] font-mono text-slate-500 flex items-center gap-2">

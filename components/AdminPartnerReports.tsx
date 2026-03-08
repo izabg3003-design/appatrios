@@ -23,7 +23,7 @@ const AdminPartnerReports: React.FC<Props> = ({ f }) => {
       const { data: vData } = await supabase.from('vendors').select('*');
       const { data: pData } = await supabase.from('profiles').select('*');
       
-      const masterData = pData?.find((p: any) => p.email === 'master@digitalnexus.com' || p.email === 'izarelleBraga@gmail.com');
+      const masterData = pData?.find((p: any) => p.email === 'master@atrioswork.com' || p.email === 'izarelleBraga@gmail.com');
       if (masterData) {
         let sub: any = {};
         try { sub = typeof masterData.subscription === 'string' ? JSON.parse(masterData.subscription) : (masterData.subscription || {}); } catch(e) {}
@@ -33,7 +33,7 @@ const AdminPartnerReports: React.FC<Props> = ({ f }) => {
       setVendors(vData || []);
       setProfiles(pData || []);
     } catch (e) {
-      console.error("Erro Nexus Reports:", e);
+      console.error("Erro AtriosWork Reports:", e);
     } finally {
       setLoading(false);
     }
@@ -100,7 +100,7 @@ const AdminPartnerReports: React.FC<Props> = ({ f }) => {
   const handlePrint = () => {
     const originalTitle = document.title;
     const dateStr = format(currentDate, 'MMMM_yyyy').toUpperCase();
-    document.title = `NEXUS_PARTNER_COMMISSIONS_${dateStr}`;
+    document.title = `ATRIOSWORK_PARTNER_COMMISSIONS_${dateStr}`;
     setTimeout(() => {
       window.print();
       document.title = originalTitle;

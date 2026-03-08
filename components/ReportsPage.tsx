@@ -20,7 +20,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
   const locales: Record<string, any> = { 'pt-PT': pt, 'en': enUS, 'es-ES': es, 'es-AR': es, 'fr': fr, 'de': de, 'it': it };
   const currentLocale = locales[lang] || pt;
 
-  const getNexusId = () => {
+  const getAtriosWorkId = () => {
     try {
       const sub = user.subscription;
       if (!sub) return user.id?.substring(0, 8) || '---';
@@ -69,7 +69,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
     }
     const monthName = format(parseISO(`${monthKey}-01`), 'MMMM_yyyy', { locale: currentLocale });
     const originalTitle = document.title;
-    document.title = `NEXUS_REPORT_${user.name.replace(/\s+/g, '_').toUpperCase()}_${getNexusId()}_${monthName.toUpperCase()}`;
+    document.title = `ATRIOSWORK_REPORT_${user.name.replace(/\s+/g, '_').toUpperCase()}_${getAtriosWorkId()}_${monthName.toUpperCase()}`;
     setTimeout(() => {
       window.print();
       document.title = originalTitle;
@@ -113,7 +113,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
                   <h3 className="text-2xl md:text-3xl font-black italic tracking-tighter uppercase text-slate-900 leading-none">
                     {format(parseISO(`${selectedMonth}-01`), 'MMMM yyyy', { locale: currentLocale })}
                   </h3>
-                  <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest mt-2">AtriosWork • ID #{getNexusId()}</p>
+                  <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest mt-2">AtriosWork • ID #{getAtriosWorkId()}</p>
                 </div>
               </div>
               <div className="text-right">
@@ -256,7 +256,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
             </div>
 
             <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6 print:border-black print:mt-10">
-              <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.4em]">NexusTime Infrastructure v16.0 — Auditoria Digital Europeia</p>
+              <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.4em]">AtriosWork Infrastructure v16.0 — Auditoria Digital Europeia</p>
               <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] print:text-black">AtriosWork © 2026</p>
             </div>
           </div>
@@ -270,7 +270,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
   return (
     <div className="space-y-8 animate-[fadeIn_0.5s_ease-out] no-print pb-24">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-black italic tracking-tighter uppercase text-white">NEXUS<span className="text-purple-400">_REPORT</span></h2>
+        <h2 className="text-3xl font-black italic tracking-tighter uppercase text-white">ATRIOSWORK<span className="text-purple-400">_REPORT</span></h2>
         <div className="hidden md:flex items-center gap-3 bg-slate-800/40 px-6 py-3 rounded-2xl border border-white/5">
            <HardDrive className="w-4 h-4 text-purple-400" />
            <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">Cloud Sincronizada (Lisboa)</span>

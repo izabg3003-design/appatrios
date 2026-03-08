@@ -18,7 +18,7 @@ const PrivacyPage: React.FC<Props> = ({ onBack }) => {
         <header className="space-y-4">
           <div className="flex items-center gap-3 text-emerald-400">
             <ShieldCheck className="w-8 h-8" />
-            <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-white">Privacidade <span className="text-emerald-400">Nexus</span></h1>
+            <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-white">Privacidade <span className="text-emerald-400">AtriosWork</span></h1>
           </div>
           <p className="text-xs font-bold uppercase tracking-widest text-slate-500">AtriosWork • Conformidade RGPD</p>
         </header>
@@ -26,12 +26,12 @@ const PrivacyPage: React.FC<Props> = ({ onBack }) => {
         <div className="glass p-8 md:p-12 rounded-[3rem] border-white/5 space-y-10 leading-relaxed text-sm">
           <section className="space-y-4">
             <h2 className="text-white font-black uppercase flex items-center gap-3 italic"><Eye className="w-5 h-5 text-emerald-500" /> 1. Recolha de Dados</h2>
-            <p>A AtriosWork recolhe dados estritamente necessários para a prestação do serviço NexusTime: Nome, E-mail, NIF, dados de geolocalização (quando autorizado) e registos de jornada laboral. Estes dados são processados para garantir a precisão dos seus relatórios financeiros.</p>
+            <p>A AtriosWork recolhe dados estritamente necessários para a prestação do serviço AtriosWork: Nome, E-mail, NIF, dados de geolocalização (quando autorizado) e registos de jornada laboral. Estes dados são processados para garantir a precisão dos seus relatórios financeiros.</p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-white font-black uppercase flex items-center gap-3 italic"><Database className="w-5 h-5 text-emerald-500" /> 2. Armazenamento e Segurança</h2>
-            <p>Todos os dados são encriptados e armazenados na nossa infraestrutura Nexus Cloud (via Supabase), utilizando padrões de segurança de nível bancário. O acesso é restrito apenas ao utilizador titular da conta e, em casos de suporte técnico, a agentes devidamente autorizados sob sigilo profissional.</p>
+            <p>Todos os dados são encriptados e armazenados na nossa infraestrutura AtriosWork Cloud (via Supabase), utilizando padrões de segurança de nível bancário. O acesso é restrito apenas ao utilizador titular da conta e, em casos de suporte técnico, a agentes devidamente autorizados sob sigilo profissional.</p>
           </section>
 
           <section className="space-y-4">

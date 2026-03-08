@@ -10,11 +10,11 @@ interface Props {
   t: (key: string) => any;
 }
 
-const generateNexusId = () => {
+const generateAtriosWorkId = () => {
   const year = new Date().getFullYear();
   const hex = Math.random().toString(16).substr(2, 4).toUpperCase();
   const serial = Math.random().toString(36).substr(2, 4).toUpperCase();
-  return `DX-${year}-${hex}-${serial}-NX`;
+  return `AW-${year}-${hex}-${serial}-AW`;
 };
 
 const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
@@ -71,7 +71,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
     const timer = setTimeout(async () => {
       setIsValidatingCode(true);
       try {
-        if (code === 'NEXUS-FREE-DEV') {
+        if (code === 'ATRIOSWORK-FREE-DEV') {
           setAppliedDiscountPercent(100);
           setIsDiscountApplied(true);
           return;
@@ -170,11 +170,11 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
 
     try {
       const { data: existingUser } = await supabase.from('profiles').select('id').eq('email', formData.email).maybeSingle();
-      if (existingUser) throw new Error("Este e-mail já possui uma licença Digital Nexus ativa.");
+      if (existingUser) throw new Error("Este e-mail já possui uma licença AtriosWork ativa.");
 
-      if (vendorCode.trim().toUpperCase() === 'NEXUS-FREE-DEV') {
+      if (vendorCode.trim().toUpperCase() === 'ATRIOSWORK-FREE-DEV') {
         setPaymentStep('charging');
-        await finalizeNexusAccount('BYPASS_DEV_MODE', 0, true);
+        await finalizeAtriosWorkAccount('BYPASS_DEV_MODE', 0, true);
         return;
       }
 
@@ -213,15 +213,15 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
           throw new Error("O seu cartão foi recusado por falta de saldo. Verifique o seu banco ou use outro cartão.");
         }
         
-        throw new Error(realError || "Falha na comunicação com o servidor Nexus. Tente novamente.");
+        throw new Error(realError || "Falha na comunicação com o servidor AtriosWork. Tente novamente.");
       }
 
       if (!data?.success) {
-        throw new Error(data?.error || "A transação foi recusada pela Digital Nexus.");
+        throw new Error(data?.error || "A transação foi recusada pela AtriosWork.");
       }
 
       setPaymentStep('charging');
-      await finalizeNexusAccount(data.chargeId, data.amountCharged, data.discounted);
+      await finalizeAtriosWorkAccount(data.chargeId, data.amountCharged, data.discounted);
 
     } catch (err: any) {
       setPaymentStep('failed');
@@ -230,7 +230,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
     }
   };
 
-  const finalizeNexusAccount = async (chargeId: string, finalAmount: number, wasDiscounted: boolean) => {
+  const finalizeAtriosWorkAccount = async (chargeId: string, finalAmount: number, wasDiscounted: boolean) => {
     try {
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: formData.email,
@@ -256,7 +256,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
           hourlyRate: 10,
           isFreelancer: false,
           subscription: {
-            id: generateNexusId(),
+            id: generateAtriosWorkId(),
             startDate: new Date().toISOString(), 
             isActive: true,
             appliedDiscount: wasDiscounted ? appliedDiscountPercent : 0,
@@ -274,7 +274,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
       }
     } catch (err: any) {
       setPaymentStep('failed');
-      setErrorDetails(`Erro ao criar conta Nexus: ${err.message}`);
+      setErrorDetails(`Erro ao criar conta AtriosWork: ${err.message}`);
     }
   };
 
@@ -292,7 +292,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
             </div>
             <div className="text-center space-y-4 px-8">
               <h2 className="text-3xl font-black text-white uppercase italic tracking-tighter">
-                {paymentStep === 'verifying' ? 'Segurança Nexus...' : 'A Criar Acesso...'}
+                {paymentStep === 'verifying' ? 'Segurança AtriosWork...' : 'A Criar Acesso...'}
               </h2>
               <p className="text-slate-500 text-[11px] font-black uppercase tracking-[0.4em] max-w-sm mx-auto leading-relaxed text-center">
                 A processar o seu ID AtriosWork.<br/>Não feche esta janela.
@@ -340,8 +340,8 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
               </button>
 
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center font-black text-white text-xl shadow-2xl">DX</div>
-                <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase leading-none">NEXUS<span className="text-emerald-400">TIME</span></h2>
+                <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center font-black text-white text-xl shadow-2xl">AW</div>
+                <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase leading-none">ATRIOSWORK</h2>
               </div>
 
               <div className="space-y-6 mb-12">
@@ -387,7 +387,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
 
                 {isDiscountApplied && (
                   <p className="text-[10px] font-black text-emerald-500 uppercase tracking-widest mt-4 animate-bounce flex items-center gap-2">
-                    <Check className="w-3 h-3" /> {vendorCode === 'NEXUS-FREE-DEV' ? 'MODO TESTE ATIVO' : `DESCONTO DE ${appliedDiscountPercent}% APLICADO!`}
+                    <Check className="w-3 h-3" /> {vendorCode === 'ATRIOSWORK-FREE-DEV' ? 'MODO TESTE ATIVO' : `DESCONTO DE ${appliedDiscountPercent}% APLICADO!`}
                   </p>
                 )}
               </div>
@@ -408,14 +408,14 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
                       <label className="text-[10px] font-black text-slate-500 uppercase ml-2 tracking-widest">Nome do Titular</label>
                       <div className="relative">
                         <User className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
-                        <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white focus:ring-1 focus:ring-purple-500 outline-none font-bold" placeholder="Titular Nexus" />
+                        <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white focus:ring-1 focus:ring-purple-500 outline-none font-bold" placeholder="Titular AtriosWork" />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-slate-500 uppercase ml-2 tracking-widest">Email de Acesso</label>
                       <div className="relative">
                         <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
-                        <input type="email" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white focus:ring-1 focus:ring-purple-500 outline-none font-bold" placeholder="email@nexus.com" />
+                        <input type="email" required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white focus:ring-1 focus:ring-purple-500 outline-none font-bold" placeholder="email@atrioswork.com" />
                       </div>
                     </div>
                   </div>

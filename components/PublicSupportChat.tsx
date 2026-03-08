@@ -48,7 +48,7 @@ const PublicSupportChat: React.FC = () => {
       const { count } = await supabase
         .from('profiles')
         .select('*', { count: 'exact', head: true })
-        .or(`role.in.(support,admin),email.eq.master@digitalnexus.com,email.eq.izarelleBraga@gmail.com`)
+        .or(`role.in.(support,admin),email.eq.master@atrioswork.com,email.eq.izarelleBraga@gmail.com`)
         .gt('updated_at', fiveMinutesAgo);
       
       setIsAgentsOnline((count || 0) > 0);
@@ -98,7 +98,7 @@ const PublicSupportChat: React.FC = () => {
   useEffect(() => {
     if (!visitorId || !isOpen) return;
 
-    const channel = supabase.channel(`visitor_chat_${visitorId}`)
+    const channel = supabase.channel(`atrioswork_visitor_chat_${visitorId}`)
       .on('postgres_changes', { 
         event: 'INSERT', 
         schema: 'public', 
@@ -175,7 +175,7 @@ const PublicSupportChat: React.FC = () => {
       
       return true;
     } catch (err: any) {
-      console.error("Nexus Sync Error:", err.message);
+      console.error("AtriosWork Sync Error:", err.message);
       return false;
     }
   };
@@ -195,7 +195,7 @@ const PublicSupportChat: React.FC = () => {
       if (!success) {
         setMessages(prev => [...prev, { 
           role: 'ai', 
-          text: "Erro ao conectar. Por favor, envie um e-mail para suporte.nexustime@gmail.com." 
+          text: "Erro ao conectar. Por favor, envie um e-mail para suporte.atrioswork@gmail.com." 
         }]);
       }
       setIsSending(false);
@@ -241,7 +241,7 @@ const PublicSupportChat: React.FC = () => {
       setShowHumanSupportStatus(true);
       setIsHumanModeActive(true);
     } else {
-      setMessages(prev => [...prev, { role: 'ai', text: "Erro ao abrir ticket. Contacte suporte.nexustime@gmail.com" }]);
+      setMessages(prev => [...prev, { role: 'ai', text: "Erro ao abrir ticket. Contacte suporte.atrioswork@gmail.com" }]);
     }
     
     setIsSending(false);
@@ -250,7 +250,7 @@ const PublicSupportChat: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-[2000] font-inter flex flex-col items-end">
-      {/* Nexus Incentive Nudge */}
+      {/* AtriosWork Incentive Nudge */}
       {showNudge && !isOpen && (
         <div className="mb-4 mr-2 animate-[slideUp_0.5s_ease-out]">
           <div className="bg-slate-900 border border-emerald-500/30 px-6 py-4 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative">
@@ -288,7 +288,7 @@ const PublicSupportChat: React.FC = () => {
                 {isHumanModeActive ? <Headphones className="w-5 h-5 text-emerald-400" /> : <Bot className="w-5 h-5 text-emerald-400" />}
               </div>
               <div>
-                <h3 className="text-sm font-black text-white uppercase italic tracking-tighter">Nexus <span className="text-emerald-400">{isHumanModeActive ? 'Human' : 'Support'}</span></h3>
+                <h3 className="text-sm font-black text-white uppercase italic tracking-tighter">AtriosWork <span className="text-emerald-400">{isHumanModeActive ? 'Human' : 'Support'}</span></h3>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${isAgentsOnline ? 'bg-emerald-500' : 'bg-amber-500'}`}></div>
                   <span className="text-[8px] font-black text-slate-500 uppercase tracking-widest">{isAgentsOnline ? 'Operação Online' : 'Suporte Limitado'}</span>
@@ -303,7 +303,7 @@ const PublicSupportChat: React.FC = () => {
               <form onSubmit={handleStartChat} className="space-y-6 pt-4 animate-[fadeIn_0.4s_ease-out]">
                 <div className="text-center space-y-2 mb-6">
                   <Fingerprint className="w-10 h-10 text-emerald-500/40 mx-auto" />
-                  <h4 className="text-white font-bold text-sm uppercase">Identificação Nexus</h4>
+                  <h4 className="text-white font-bold text-sm uppercase">Identificação AtriosWork</h4>
                   <p className="text-[9px] text-slate-500 uppercase font-black tracking-widest">Inicie o suporte especializado</p>
                 </div>
                 
@@ -351,7 +351,7 @@ const PublicSupportChat: React.FC = () => {
                     <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
                       {isAgentsOnline === false 
                         ? "Neste momento os consultores estão offline. Deixe a sua dúvida, responderemos assim que possível." 
-                        : "Conectado à equipa de suporte Digital Nexus. Aguarde a resposta de um consultor."}
+                        : "Conectado à equipa de suporte AtriosWork. Aguarde a resposta de um consultor."}
                     </p>
                   </div>
                 )}

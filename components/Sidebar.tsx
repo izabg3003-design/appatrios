@@ -15,10 +15,10 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, hideValues, togglePrivacy, isPro }) => {
-  const isMaster = user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com';
+  const isMaster = user.email === 'master@atrioswork.com' || user.email === 'izarelleBraga@gmail.com';
   const isVendor = user.role === 'vendor';
   const isSupport = user.role === 'support';
-  const isAdmin = user.role === 'admin' || user.email === 'admin@digitalnexus.com' || isMaster;
+  const isAdmin = user.role === 'admin' || user.email === 'admin@atrioswork.com' || isMaster;
   
   const tabs = [
     { id: 'dashboard' as AppState, icon: LayoutDashboard, label: 'Registro de dia', show: !isMaster && !isVendor && !isSupport },
@@ -35,7 +35,7 @@ const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, 
     // Suporte (Usuário Comum)
     { id: 'user-support' as AppState, icon: LifeBuoy, label: 'Suporte', show: !isAdmin && !isSupport && !isMaster && !isVendor },
     
-    { id: 'admin' as AppState, icon: ShieldCheck, label: 'Nexus Master', show: isAdmin },
+    { id: 'admin' as AppState, icon: ShieldCheck, label: 'AtriosWork Master', show: isAdmin },
     { id: 'settings' as AppState, icon: Settings, label: 'Perfil', show: !isMaster },
   ];
 
@@ -44,7 +44,7 @@ const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, 
   return (
     <>
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-24 bg-slate-950 border-r border-white/5 z-[100] flex-col items-center py-10">
-        <div className="w-10 h-10 btn-primary rounded-xl flex items-center justify-center font-black text-white text-xs mb-12 shadow-lg shadow-purple-500/20">DX</div>
+        <div className="w-10 h-10 btn-primary rounded-xl flex items-center justify-center font-black text-white text-xs mb-12 shadow-lg shadow-purple-500/20">AW</div>
         <nav className="flex-1 space-y-4 w-full px-2">
           {filteredTabs.map((tab) => (
             <button

@@ -6,7 +6,7 @@ interface Props {
   onBack: () => void;
 }
 
-const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
+const AboutAtriosWorkPage: React.FC<Props> = ({ onBack }) => {
   return (
     <div className="space-y-16 animate-[fadeIn_0.5s_ease-out] pb-40">
       {/* Header com Navegação */}
@@ -16,7 +16,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
             <Binary className="w-4 h-4 text-emerald-400" />
             <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Corporate Intelligence Hub</span>
           </div>
-          <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">NEXUS<span className="text-emerald-400">_MANIFESTO</span></h2>
+          <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">ATRIOSWORK<span className="text-emerald-400">_MANIFESTO</span></h2>
         </div>
         <button onClick={onBack} className="flex items-center gap-3 text-slate-500 hover:text-emerald-400 transition-all group px-6 py-3 bg-slate-900/40 border border-white/5 rounded-2xl">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-2 transition-transform" />
@@ -55,21 +55,21 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
         <div className="space-y-8">
           <div className="space-y-4">
             <h3 className="text-2xl font-black text-white uppercase italic tracking-tight flex items-center gap-3">
-              <Code2 className="w-6 h-6 text-purple-400" /> A Gênese do NexusTime
+              <Code2 className="w-6 h-6 text-purple-400" /> A Gênese do AtriosWork
             </h3>
             <div className="space-y-4 text-slate-400 text-sm leading-relaxed">
               <p>
                 Em 2024, identificamos um padrão alarmante no ecossistema de trabalho remoto e presencial em Portugal e na Europa. A complexidade dos impostos (IRS, SS, IVA) combinada com horários flexíveis estava a criar um "caos silencioso". O profissional trabalhava mais, mas via menos lucro no final do mês devido a arredondamentos errados e distrações administrativas.
               </p>
               <p>
-                A nossa resposta foi desenvolver o **NexusTime**. Não é apenas um app de horas; é uma infraestrutura de inteligência financeira. Cada linha de código foi escrita com um único objetivo: garantir que nem um único segundo de trabalho seja doado por falta de registo.
+                A nossa resposta foi desenvolver o **AtriosWork**. Não é apenas um app de horas; é uma infraestrutura de inteligência financeira. Cada linha de código foi escrita com um único objetivo: garantir que nem um único segundo de trabalho seja doado por falta de registo.
               </p>
             </div>
           </div>
 
           <div className="space-y-4">
             <h3 className="text-2xl font-black text-white uppercase italic tracking-tight flex items-center gap-3">
-              <Gem className="w-6 h-6 text-emerald-400" /> O Padrão Digital Nexus
+              <Gem className="w-6 h-6 text-emerald-400" /> O Padrão AtriosWork
             </h3>
             <div className="space-y-4 text-slate-400 text-sm leading-relaxed">
               <p>
@@ -111,7 +111,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
       {/* Grid de Pilares Técnicos */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { icon: ShieldCheck, title: "Blindagem de Dados", desc: "Segurança de nível bancário com encriptação Nexus-Cloud de 256 bits.", color: "emerald" },
+          { icon: ShieldCheck, title: "Blindagem de Dados", desc: "Segurança de nível bancário com encriptação AtriosWork-Cloud de 256 bits.", color: "emerald" },
           { icon: Cpu, title: "Inteligência Atómica", desc: "Algoritmos proprietários que processam impostos complexos em microssegundos.", color: "purple" },
           { icon: Rocket, title: "Escalabilidade", desc: "Arquitetura projetada para suportar desde o freelancer solo até multinacionais.", color: "blue" },
           { icon: Zap, title: "Performance Elite", desc: "Interface otimizada para latência zero, garantindo foco total no trabalho.", color: "amber" }
@@ -132,7 +132,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
         
         <div className="space-y-4 relative z-10">
           <h3 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.5em]">Global Reach Statistics</h3>
-          <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">Impacto <span className="text-emerald-400">Digital Nexus</span></h2>
+          <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">Impacto <span className="text-emerald-400">AtriosWork</span></h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
@@ -163,7 +163,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
           </p>
         </div>
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center font-black text-white text-[10px] shadow-2xl border border-white/5">DX</div>
+          <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center font-black text-white text-[10px] shadow-2xl border border-white/5">AW</div>
           <p className="text-[9px] font-black text-slate-600 uppercase tracking-[0.4em]">Infraestrutura de Elite • Lisboa 2026</p>
         </div>
       </div>
@@ -171,4 +171,4 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
   );
 };
 
-export default AboutNexusPage;
+export default AboutAtriosWorkPage;

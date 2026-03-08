@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nexus-time-v1.1';
+const CACHE_NAME = 'atrioswork-v1.1';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

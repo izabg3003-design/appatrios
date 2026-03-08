@@ -26,19 +26,19 @@ interface Props {
   hideValues?: boolean;
 }
 
-const generateNexusId = () => {
+const generateAtriosWorkId = () => {
   const year = new Date().getFullYear();
   const hex = Math.random().toString(16).substr(2, 4).toUpperCase();
   const serial = Math.random().toString(36).substr(2, 4).toUpperCase();
-  return `DX-${year}-${hex}-${serial}-NX`;
+  return `AW-${year}-${hex}-${serial}-AW`;
 };
 
 const generateVendorCode = () => {
-  return 'NX-' + Math.random().toString(36).substr(2, 5).toUpperCase();
+  return 'AW-' + Math.random().toString(36).substr(2, 5).toUpperCase();
 };
 
 const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, onViewVendorSales, t, onUpdateProfile, hideValues }) => {
-  const isMaster = currentUser?.email === 'master@digitalnexus.com' || currentUser?.email === 'izarelleBraga@gmail.com';
+  const isMaster = currentUser?.email === 'master@atrioswork.com' || currentUser?.email === 'izarelleBraga@gmail.com';
   const [activeSubTab, setActiveSubTab] = useState<'users' | 'vendors' | 'reports' | 'analytics' | 'support' | 'profile' | 'banners' | 'ledger' | 'notifications'>('users');
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [vendors, setVendors] = useState<any[]>([]);
@@ -96,7 +96,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
     setLoading(true);
     try {
       if (activeSubTab === 'users') {
-        const { data } = await supabase.from('profiles').select('*').neq('role', 'vendor').neq('role', 'support').neq('email', 'master@digitalnexus.com');
+        const { data } = await supabase.from('profiles').select('*').neq('role', 'vendor').neq('role', 'support').neq('email', 'master@atrioswork.com');
         setUsers(data || []);
       } else if (activeSubTab === 'vendors') {
         const { data: vData } = await supabase.from('vendors').select('*');
@@ -115,7 +115,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
         }
       }
     } catch (e) { 
-      console.error("Nexus Admin Error:", e); 
+      console.error("AtriosWork Admin Error:", e); 
     } finally { 
       setLoading(false); 
     }
@@ -159,7 +159,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
           hourlyRate: 10,
           isFreelancer: false,
           subscription: {
-            id: generateNexusId(),
+            id: generateAtriosWorkId(),
             startDate: new Date().toISOString(), 
             isActive: true,
             status: 'ACTIVE_ADMIN_CREATED'
@@ -214,7 +214,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
           hourlyRate: 10,
           isFreelancer: false,
           subscription: {
-            id: generateNexusId(),
+            id: generateAtriosWorkId(),
             startDate: new Date().toISOString(), 
             isActive: true,
             status: 'VENDOR_ACTIVE'
@@ -281,7 +281,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
       setNewBanner({ title: '', highlight: '', subtitle: '', cta_text: 'Ver Oferta', theme_color: 'emerald', is_active: true, image_url: '', user_type: 'all' });
       fetchData();
     } catch (e: any) { 
-      alert(`Erro Nexus: ${e.message}`);
+      alert(`Erro AtriosWork: ${e.message}`);
     } finally { 
       setIsCreating(false); 
     }
@@ -363,7 +363,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
       setEditingCommissionVendor(null);
       await fetchData();
     } catch (e: any) {
-      alert(`Erro Nexus: ${e.message}`);
+      alert(`Erro AtriosWork: ${e.message}`);
     } finally {
       setIsSavingComm(false);
     }
@@ -424,7 +424,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
     }
   };
 
-  const getNexusIdDisplay = (u: any) => {
+  const getAtriosWorkIdDisplay = (u: any) => {
     if (hideValues) return "••••••••";
     const sub = typeof u.subscription === 'string' ? JSON.parse(u.subscription) : (u.subscription || {});
     return sub.id || u.id?.substring(0, 8).toUpperCase() || '---';
@@ -436,9 +436,9 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <ShieldCheck className={`w-4 h-4 ${isMaster ? 'text-amber-500' : 'text-purple-400'}`} />
-            <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">{isMaster ? 'Nexus Master Core Management' : 'Digital Nexus Command OS'}</span>
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">{isMaster ? 'AtriosWork Master Core Management' : 'AtriosWork Command OS'}</span>
           </div>
-          <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">NEXUS <span className={isMaster ? 'text-amber-500' : 'text-purple-400'}>{isMaster ? 'MASTER' : 'COMMAND'}</span></h2>
+          <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">ATRIOS<span className={isMaster ? 'text-amber-500' : 'text-purple-400'}>{isMaster ? 'WORK' : 'COMMAND'}</span></h2>
         </div>
         
         <div className="flex gap-2 p-1 bg-slate-800/40 rounded-2xl border border-slate-700/50 flex-wrap">
@@ -463,7 +463,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
             <div className="bg-slate-800/20 border border-blue-500/20 p-10 rounded-[3rem] space-y-8 shadow-2xl relative overflow-hidden">
                <div className="absolute top-0 right-0 p-10 opacity-5 pointer-events-none"><Webhook className="w-64 h-64 text-blue-500" /></div>
                <div className="space-y-2 relative z-10">
-                  <h3 className="text-2xl font-black text-white italic uppercase tracking-tighter">Protocolo de <span className="text-blue-400">Alertas Nexus</span></h3>
+                  <h3 className="text-2xl font-black text-white italic uppercase tracking-tighter">Protocolo de <span className="text-blue-400">Alertas AtriosWork</span></h3>
                   <p className="text-sm text-slate-400 max-w-2xl leading-relaxed">Configure como a equipa de suporte é notificada sobre novos tickets. Recomendamos a utilização de Webhooks para integração direta com E-mail ou Push via Smartphone.</p>
                </div>
 
@@ -473,7 +473,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                         <div className="w-12 h-12 bg-blue-600/20 rounded-2xl flex items-center justify-center text-blue-400"><Mail className="w-6 h-6" /></div>
                         <h4 className="text-sm font-black text-white uppercase tracking-widest">Notificações por E-mail</h4>
                      </div>
-                     <p className="text-[11px] text-slate-500 font-medium leading-relaxed">Para encaminhar novos tickets para <strong>suporte.nexustime@gmail.com</strong>, utilize um Webhook no Supabase Dashboard (Database &rarr; Webhooks) apontando para um serviço como Resend ou SendGrid.</p>
+                     <p className="text-[11px] text-slate-500 font-medium leading-relaxed">Para encaminhar novos tickets para <strong>suporte.atrioswork@gmail.com</strong>, utilize um Webhook no Supabase Dashboard (Database &rarr; Webhooks) apontando para um serviço como Resend ou SendGrid.</p>
                      <button onClick={() => window.open('https://supabase.com/docs/guides/database/webhooks', '_blank')} className="flex items-center gap-2 text-blue-400 text-[10px] font-black uppercase hover:underline"><ExternalLink className="w-3 h-3" /> Abrir Guia de Configuração</button>
                   </div>
 
@@ -528,7 +528,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
               <thead>
                 <tr className="bg-slate-950/30 text-slate-500 text-[10px] uppercase font-black tracking-[0.2em] border-b border-slate-800">
                   <th className="px-10 py-6">{activeSubTab === 'banners' ? 'Mídia / Título' : 'Identidade'}</th>
-                  <th className="px-6 py-6 text-center">{activeSubTab === 'banners' ? 'Cor' : activeSubTab === 'users' ? 'Nexus ID' : 'Canal'}</th>
+                  <th className="px-6 py-6 text-center">{activeSubTab === 'banners' ? 'Cor' : activeSubTab === 'users' ? 'AtriosWork ID' : 'Canal'}</th>
                   <th className="px-6 py-6 text-center">Status</th>
                   {activeSubTab !== 'banners' && <th className="px-6 py-6 text-center">Expiração</th>}
                   <th className="px-10 py-6 text-right">Ações</th>
@@ -651,7 +651,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                         </td>
                         <td className="px-6 py-6 text-center">
                           <span className="text-[10px] font-mono font-black text-purple-400 tracking-wider bg-purple-500/10 px-3 py-1.5 rounded-lg border border-purple-500/20">
-                            {getNexusIdDisplay(u)}
+                            {getAtriosWorkIdDisplay(u)}
                           </span>
                         </td>
                         <td className="px-6 py-6 text-center">
@@ -846,7 +846,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                     <label className="text-[10px] font-black text-slate-500 uppercase ml-2 tracking-widest">Email de Acesso</label>
                     <div className="relative">
                       <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
-                      <input required type="email" value={newUser.email} onChange={e => setNewUser({...newUser, email: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white font-bold outline-none focus:ring-1 focus:ring-purple-500" placeholder="email@nexus.com" />
+                      <input required type="email" value={newUser.email} onChange={e => setNewUser({...newUser, email: e.target.value})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white font-bold outline-none focus:ring-1 focus:ring-purple-500" placeholder="email@atrioswork.com" />
                     </div>
                   </div>
                </div>
@@ -863,7 +863,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                     <label className="text-[10px] font-black text-slate-500 uppercase ml-2 tracking-widest">Código do Parceiro</label>
                     <div className="relative">
                       <Tag className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600" />
-                      <input type="text" value={newUser.vendorCode} onChange={e => setNewUser({...newUser, vendorCode: e.target.value.toUpperCase()})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white font-bold outline-none focus:ring-1 focus:ring-purple-500" placeholder="EX: NX-12345" />
+                      <input type="text" value={newUser.vendorCode} onChange={e => setNewUser({...newUser, vendorCode: e.target.value.toUpperCase()})} className="w-full bg-slate-950 border border-slate-800 rounded-2xl pl-14 pr-6 py-4 text-white font-bold outline-none focus:ring-1 focus:ring-purple-500" placeholder="EX: AW-12345" />
                     </div>
                   </div>
                </div>
@@ -890,7 +890,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                     {isCreating ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShieldCheck className="w-5 h-5" />} ATIVAR ACESSO IMEDIATO
                   </button>
                   <p className="text-[9px] text-slate-600 font-black uppercase text-center tracking-widest flex items-center justify-center gap-2">
-                    <Fingerprint className="w-3 h-3" /> ID Nexus gerado automaticamente em sincronia cloud
+                    <Fingerprint className="w-3 h-3" /> ID AtriosWork gerado automaticamente em sincronia cloud
                   </p>
                </div>
             </div>
@@ -967,7 +967,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
                     {isCreating ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShieldCheck className="w-5 h-5" />} ATIVAR CANAL DE PARCEIRO
                   </button>
                   <p className="text-[9px] text-slate-600 font-black uppercase text-center tracking-widest flex items-center justify-center gap-2">
-                    <Tag className="w-3 h-3" /> Código NX-XXXXX gerado automaticamente para o novo parceiro
+                    <Tag className="w-3 h-3" /> Código AW-XXXXX gerado automaticamente para o novo parceiro
                   </p>
                </div>
             </div>

@@ -34,7 +34,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
           setTimeout(() => setShowBannerOverlay(true), 1500);
         }
       } catch (e) {
-        console.warn("Nexus Banners: Tabela não configurada ou inacessível.");
+        console.warn("AtriosWork Banners: Tabela não configurada ou inacessível.");
       }
     };
     fetchBanners();
@@ -87,8 +87,8 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-4 bg-slate-950/90 backdrop-blur-xl border-b border-white/5' : 'py-8 bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 btn-primary rounded-xl flex items-center justify-center font-black text-white text-xs shadow-lg">DX</div>
-            <span className="font-bold text-xl tracking-tighter text-white">Nexus<span className="text-emerald-400">Time</span></span>
+            <div className="w-10 h-10 btn-primary rounded-xl flex items-center justify-center font-black text-white text-xs shadow-lg">AW</div>
+            <span className="font-bold text-xl tracking-tighter text-white">Atrios<span className="text-emerald-400">Work</span></span>
           </div>
           <div className="flex items-center gap-6">
             <button onClick={onAbout} className="hidden md:block text-[11px] font-black text-slate-400 uppercase tracking-widest hover:text-white transition-colors">A Empresa</button>
@@ -112,7 +112,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
             </h1>
             
             <p className="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
-              O NexusTime Pro é o <strong>app de controlo de horas de trabalho</strong> ideal para quem precisa de <strong>registar horas extra</strong>, organizar pagamentos e gerar o <strong>relatório de horas para o IRS em Portugal</strong>.
+              O AtriosWork Pro é o <strong>app de controlo de horas de trabalho</strong> ideal para quem precisa de <strong>registar horas extra</strong>, organizar pagamentos e gerar o <strong>relatório de horas para o IRS em Portugal</strong>.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -148,7 +148,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
               { 
                 icon: Laptop, 
                 title: "App Horas Extra", 
-                desc: "Ideal para recibos verdes e controlo de horas em trabalho por turnos Portugal. Gestão completa na Nexus Cloud.",
+                desc: "Ideal para recibos verdes e controlo de horas em trabalho por turnos Portugal. Gestão completa na AtriosWork Cloud.",
                 color: "blue"
               },
             ].map((item, i) => (
@@ -163,7 +163,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
           </div>
         </section>
 
-        {/* SEO CONTENT SECTION - Porquê escolher o NexusTime? */}
+        {/* SEO CONTENT SECTION - Porquê escolher o AtriosWork? */}
         <section className="py-32 px-6 bg-slate-950/40 border-y border-white/5">
            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
               <div className="space-y-12">
@@ -172,7 +172,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
                      Diga adeus ao <br/> <span className="text-emerald-400">registo em papel.</span>
                    </h3>
                    <p className="text-slate-400 text-lg leading-relaxed">
-                     Muitos profissionais reclamam: <strong>"não me pagaram horas extra"</strong>. Isso acontece por falta de prova. Com o NexusTime, a <strong>gestão de horas trabalhadas</strong> é atómica. Saiba <strong>como calcular horas extra</strong> sem margem para erro e evite qualquer <strong>erro no pagamento do salário</strong>.
+                     Muitos profissionais reclamam: <strong>"não me pagaram horas extra"</strong>. Isso acontece por falta de prova. Com o AtriosWork, a <strong>gestão de horas trabalhadas</strong> é atómica. Saiba <strong>como calcular horas extra</strong> sem margem para erro e evite qualquer <strong>erro no pagamento do salário</strong>.
                    </p>
                  </div>
                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -239,7 +239,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
             </p>
             <div className="max-w-sm mx-auto">
                <button onClick={onSubscribe} className="w-full px-12 py-8 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-[2.5rem] text-xl shadow-[0_30px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95 transition-all uppercase tracking-widest flex items-center justify-center gap-4">
-                <span>Ativar Nexus Pro</span>
+                <span>Ativar AtriosWork Pro</span>
                 <ArrowRight className="w-8 h-8" />
               </button>
             </div>
@@ -253,8 +253,8 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div className="col-span-1 md:col-span-1 space-y-6 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-3">
-                <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white font-black text-[10px]">DX</div>
-                <span className="font-bold text-lg tracking-tighter text-white">NexusTime</span>
+                <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white font-black text-[10px]">AW</div>
+                <span className="font-bold text-lg tracking-tighter text-white">AtriosWork</span>
               </div>
               <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
                 A infraestrutura definitiva para controlo de horas manual ou digital. Uma divisão da AtriosWork.
@@ -282,8 +282,8 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
             <div className="space-y-6 text-center md:text-left">
                <h4 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Suporte</h4>
                <ul className="space-y-4 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-                  <li><a href="mailto:suporte.nexustime@gmail.com" className="hover:text-emerald-400 transition-colors">Ajuda com IRS</a></li>
-                  <li><button onClick={onAbout} className="hover:text-emerald-400 transition-colors">Parcerias Nexus</button></li>
+                  <li><a href="mailto:suporte.atrioswork@gmail.com" className="hover:text-emerald-400 transition-colors">Ajuda com IRS</a></li>
+                  <li><button onClick={onAbout} className="hover:text-emerald-400 transition-colors">Parcerias AtriosWork</button></li>
                   <li><a href="https://www.facebook.com/share/1CSeJPHprp/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors flex items-center justify-center md:justify-start gap-2"><Facebook className="w-3 h-3" /> Facebook</a></li>
                </ul>
             </div>
