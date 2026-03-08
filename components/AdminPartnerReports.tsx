@@ -150,7 +150,7 @@ const AdminPartnerReports: React.FC<Props> = ({ f }) => {
 
       <div className="print-container">
         <div className="hidden print:block mb-8 border-b-2 border-slate-100 pb-6">
-           <h2 className="text-2xl font-black uppercase italic tracking-tighter">Digital Nexus Solutions</h2>
+           <h2 className="text-2xl font-black uppercase italic tracking-tighter">AtriosWork</h2>
            <p className="text-[10px] font-black uppercase text-slate-500 tracking-[0.2em]">Relatório de Comissões de Parceiros — {monthLabel}</p>
         </div>
 

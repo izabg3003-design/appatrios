@@ -196,7 +196,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 no-print">
         <div className="space-y-1">
           <h3 className="text-xl font-black text-white uppercase italic tracking-tighter">ESTATÍSTICAS <span className="text-emerald-400">MASTER</span></h3>
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">Digital Nexus Solutions — Auditoria Digital</p>
+          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">AtriosWork — Auditoria Digital</p>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={fetchGlobalData} className="p-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-2xl transition-all">

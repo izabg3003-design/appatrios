@@ -113,7 +113,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
                   <h3 className="text-2xl md:text-3xl font-black italic tracking-tighter uppercase text-slate-900 leading-none">
                     {format(parseISO(`${selectedMonth}-01`), 'MMMM yyyy', { locale: currentLocale })}
                   </h3>
-                  <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest mt-2">Digital Nexus Solutions • ID #{getNexusId()}</p>
+                  <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest mt-2">AtriosWork • ID #{getNexusId()}</p>
                 </div>
               </div>
               <div className="text-right">
@@ -257,7 +257,7 @@ const ReportsPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
 
             <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6 print:border-black print:mt-10">
               <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.4em]">NexusTime Infrastructure v16.0 — Auditoria Digital Europeia</p>
-              <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] print:text-black">Digital Nexus Solutions © 2026</p>
+              <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.2em] print:text-black">AtriosWork © 2026</p>
             </div>
           </div>
         </div>

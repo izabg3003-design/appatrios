@@ -41,7 +41,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
           
           <div className="space-y-6 text-slate-400 text-lg md:text-xl font-medium leading-relaxed italic border-l-2 border-emerald-500/30 pl-8">
             <p>
-              "A Digital Nexus Solutions não nasceu em uma sala de reuniões convencional. Ela emergiu da frustração de observar profissionais de elite — arquitetos, engenheiros, consultores e freelancers — perderem até 15% do seu faturamento anual por uma falha invisível: a imprecisão do tempo."
+              "A AtriosWork não nasceu em uma sala de reuniões convencional. Ela emergiu da frustração de observar profissionais de elite — arquitetos, engenheiros, consultores e freelancers — perderem até 15% do seu faturamento anual por uma falha invisível: a imprecisão do tempo."
             </p>
             <p className="text-base font-normal not-italic text-slate-500">
               Percebemos que o mercado estava saturado de cronómetros simples, mas carecia de uma **Sentinela Fiscal**. Alguém precisava de construir a ponte entre o esforço humano e o lucro atómico. Nós construímos essa ponte.
@@ -76,7 +76,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
                 Para nós, "bom o suficiente" nunca foi uma opção. Implementamos protocolos de segurança de nível bancário e uma interface que remove a fricção. Acreditamos que o software deve ser invisível e o resultado deve ser tangível.
               </p>
               <p>
-                Hoje, a Digital Nexus Solutions é sinônimo de **Soberania Temporal**. Permitimos que tu te foques na tua arte, enquanto nós tratamos da matemática, da conformidade e da proteção do teu legado financeiro.
+                Hoje, a AtriosWork é sinônimo de **Soberania Temporal**. Permitimos que tu te foques na tua arte, enquanto nós tratamos da matemática, da conformidade e da proteção do teu legado financeiro.
               </p>
             </div>
           </div>
@@ -156,7 +156,7 @@ const AboutNexusPage: React.FC<Props> = ({ onBack }) => {
         <Star className="w-12 h-12 text-emerald-400 mx-auto animate-pulse" />
         <div className="space-y-6">
           <h3 className="text-3xl md:text-4xl font-black text-white uppercase italic tracking-tighter leading-tight">
-            "Na Digital Nexus Solutions, não criamos apenas ferramentas.<br/>Nós construímos a infraestrutura da tua <span className="text-emerald-400">liberdade</span>."
+            "Na AtriosWork, não criamos apenas ferramentas.<br/>Nós construímos a infraestrutura da tua <span className="text-emerald-400">liberdade</span>."
           </h3>
           <p className="text-slate-500 text-sm max-w-xl mx-auto leading-relaxed font-medium">
             Seja bem-vindo a uma nova era de gestão. Onde o tempo não é algo que se perde, mas algo que se domina com elegância e tecnologia.

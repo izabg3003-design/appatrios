@@ -249,7 +249,7 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
              </div>
              <div>
                 <h4 className="text-sm font-black uppercase tracking-widest leading-none">A sua licença expira em {daysRemaining} dias</h4>
-                <p className="text-[10px] font-bold text-white/80 mt-1 uppercase tracking-widest opacity-80 italic">Digital Nexus Solutions • Professional Cloud</p>
+                <p className="text-[10px] font-bold text-white/80 mt-1 uppercase tracking-widest opacity-80 italic">AtriosWork • Professional Cloud</p>
              </div>
           </div>
           <button className="w-full md:w-auto px-8 py-3 bg-white text-amber-600 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-105 transition-all">

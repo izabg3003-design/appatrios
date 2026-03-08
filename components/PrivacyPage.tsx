@@ -20,13 +20,13 @@ const PrivacyPage: React.FC<Props> = ({ onBack }) => {
             <ShieldCheck className="w-8 h-8" />
             <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-white">Privacidade <span className="text-emerald-400">Nexus</span></h1>
           </div>
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Digital Nexus Solutions • Conformidade RGPD</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-slate-500">AtriosWork • Conformidade RGPD</p>
         </header>
 
         <div className="glass p-8 md:p-12 rounded-[3rem] border-white/5 space-y-10 leading-relaxed text-sm">
           <section className="space-y-4">
             <h2 className="text-white font-black uppercase flex items-center gap-3 italic"><Eye className="w-5 h-5 text-emerald-500" /> 1. Recolha de Dados</h2>
-            <p>A Digital Nexus Solutions recolhe dados estritamente necessários para a prestação do serviço NexusTime: Nome, E-mail, NIF, dados de geolocalização (quando autorizado) e registos de jornada laboral. Estes dados são processados para garantir a precisão dos seus relatórios financeiros.</p>
+            <p>A AtriosWork recolhe dados estritamente necessários para a prestação do serviço NexusTime: Nome, E-mail, NIF, dados de geolocalização (quando autorizado) e registos de jornada laboral. Estes dados são processados para garantir a precisão dos seus relatórios financeiros.</p>
           </section>
 
           <section className="space-y-4">
@@ -47,7 +47,7 @@ const PrivacyPage: React.FC<Props> = ({ onBack }) => {
 
           <section className="space-y-4">
             <h2 className="text-white font-black uppercase flex items-center gap-3 italic"><UserCheck className="w-5 h-5 text-emerald-500" /> 4. Partilha com Terceiros</h2>
-            <p>A Digital Nexus Solutions **não comercializa** dados pessoais. A partilha de informações apenas ocorre com autoridades fiscais (quando solicitado pelo utilizador via relatórios) ou por imperativo legal vigente na jurisdição portuguesa.</p>
+            <p>A AtriosWork **não comercializa** dados pessoais. A partilha de informações apenas ocorre com autoridades fiscais (quando solicitado pelo utilizador via relatórios) ou por imperativo legal vigente na jurisdição portuguesa.</p>
           </section>
 
           <div className="pt-8 border-t border-white/10 text-center">

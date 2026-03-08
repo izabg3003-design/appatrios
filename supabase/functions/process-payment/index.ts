@@ -144,7 +144,7 @@ serve(async (req) => {
       JSON.stringify({ 
         success: false, 
         error: error.message,
-        details: "A Digital Nexus Solutions não conseguiu processar o pagamento."
+        details: "A AtriosWork não conseguiu processar o pagamento."
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }, 

@@ -20,13 +20,13 @@ const TermsPage: React.FC<Props> = ({ onBack }) => {
             <Scale className="w-8 h-8" />
             <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-white">Termos de <span className="text-purple-400">Uso</span></h1>
           </div>
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Digital Nexus Solutions • Condições Contratuais</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-slate-500">AtriosWork • Condições Contratuais</p>
         </header>
 
         <div className="glass p-8 md:p-12 rounded-[3rem] border-white/5 space-y-10 leading-relaxed text-sm">
           <section className="space-y-4">
             <h2 className="text-white font-black uppercase flex items-center gap-3 italic"><Zap className="w-5 h-5 text-purple-500" /> 1. Licença de Utilização</h2>
-            <p>Ao ativar uma licença NexusTime, a Digital Nexus Solutions concede ao utilizador uma licença limitada, pessoal e não transferível para acesso à plataforma. O uso indevido para engenharia reversa ou exportação ilegal de código resultará na rescisão imediata e ações legais.</p>
+            <p>Ao ativar uma licença NexusTime, a AtriosWork concede ao utilizador uma licença limitada, pessoal e não transferível para acesso à plataforma. O uso indevido para engenharia reversa ou exportação ilegal de código resultará na rescisão imediata e ações legais.</p>
           </section>
 
           <section className="space-y-4">
@@ -40,7 +40,7 @@ const TermsPage: React.FC<Props> = ({ onBack }) => {
 
           <section className="space-y-4">
             <h2 className="text-white font-black uppercase flex items-center gap-3 italic"><ShieldAlert className="w-5 h-5 text-purple-500" /> 3. Limitação de Responsabilidade</h2>
-            <p>O NexusTime é uma ferramenta de apoio à gestão. A Digital Nexus Solutions **não se responsabiliza** por erros no preenchimento de impostos perante a Autoridade Tributária ou perdas financeiras decorrentes de má utilização dos dados introduzidos pelo utilizador. Recomendamos sempre a validação final por um Contabilista Certificado.</p>
+            <p>O NexusTime é uma ferramenta de apoio à gestão. A AtriosWork **não se responsabiliza** por erros no preenchimento de impostos perante a Autoridade Tributária ou perdas financeiras decorrentes de má utilização dos dados introduzidos pelo utilizador. Recomendamos sempre a validação final por um Contabilista Certificado.</p>
           </section>
 
           <section className="space-y-4">
@@ -49,7 +49,7 @@ const TermsPage: React.FC<Props> = ({ onBack }) => {
           </section>
 
           <div className="pt-8 border-t border-white/10 text-center">
-            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-600">Digital Nexus Solutions — Compliance Legal Portugal</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-600">AtriosWork — Compliance Legal Portugal</p>
           </div>
         </div>
       </div>

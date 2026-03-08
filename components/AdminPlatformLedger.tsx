@@ -159,7 +159,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div className="space-y-1">
           <h3 className="text-xl font-black text-white uppercase italic tracking-tighter">PLATAFORMA <span className="text-indigo-400">LEDGER</span></h3>
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">Digital Nexus Solutions • Visão Macro de Performance</p>
+          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">AtriosWork • Visão Macro de Performance</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="px-5 py-2.5 bg-slate-900 border border-white/5 rounded-2xl flex items-center gap-4 shadow-inner">
@@ -291,7 +291,7 @@ ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;`;
             </div>
          </div>
          
-         <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest text-center opacity-40">Métricas consolidadas de faturamento e produtividade na Digital Nexus Solutions.</p>
+         <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest text-center opacity-40">Métricas consolidadas de faturamento e produtividade na AtriosWork.</p>
       </div>
 
       {/* NEXUS LOGS */}

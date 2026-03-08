@@ -79,7 +79,7 @@ const LanguageGate: React.FC<Props> = ({ onSelect }) => {
         </div>
 
         <div className="p-8 border-t border-slate-800/50 bg-slate-950/50 text-center shrink-0">
-          <p className="text-[9px] text-slate-600 font-black uppercase tracking-[0.4em]">Digital Nexus Solutions — All Rights Reserved 2026</p>
+          <p className="text-[9px] text-slate-600 font-black uppercase tracking-[0.4em]">AtriosWork — All Rights Reserved 2026</p>
         </div>
       </div>
 

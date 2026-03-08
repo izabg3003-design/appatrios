@@ -194,7 +194,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
         body: { 
           token: token.id, 
           email: formData.email,
-          description: `Licença Digital Nexus Solutions: ${formData.name}`,
+          description: `Licença AtriosWork: ${formData.name}`,
           vendorCode: isDiscountApplied ? vendorCode.trim().toUpperCase() : null,
           discountPercent: isDiscountApplied ? appliedDiscountPercent : 0
         }
@@ -295,7 +295,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
                 {paymentStep === 'verifying' ? 'Segurança Nexus...' : 'A Criar Acesso...'}
               </h2>
               <p className="text-slate-500 text-[11px] font-black uppercase tracking-[0.4em] max-w-sm mx-auto leading-relaxed text-center">
-                A processar o seu ID Digital Nexus Solutions.<br/>Não feche esta janela.
+                A processar o seu ID AtriosWork.<br/>Não feche esta janela.
               </p>
             </div>
           </div>
@@ -313,7 +313,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
               </p>
               <div className="flex flex-col gap-3">
                 <button onClick={() => { setPaymentStep('form'); setLoading(false); }} className="w-full py-5 bg-white text-slate-900 font-black rounded-[2rem] text-xs uppercase tracking-widest hover:bg-slate-200 transition-all shadow-xl">Tentar Outro Cartão</button>
-                <p className="text-[9px] font-black text-slate-600 uppercase tracking-widest">Digital Nexus Solutions • PCI-Compliance v4.0</p>
+                <p className="text-[9px] font-black text-slate-600 uppercase tracking-widest">AtriosWork • PCI-Compliance v4.0</p>
               </div>
             </div>
           </div>
@@ -326,7 +326,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
             </div>
             <div className="space-y-3">
               <h2 className="text-4xl font-black text-white uppercase italic tracking-tighter">Identidade Ativada</h2>
-              <p className="text-emerald-500 text-[11px] font-black uppercase tracking-[0.5em]">Bem-vindo à Digital Nexus Solutions.</p>
+              <p className="text-emerald-500 text-[11px] font-black uppercase tracking-[0.5em]">Bem-vindo à AtriosWork.</p>
             </div>
           </div>
         )}

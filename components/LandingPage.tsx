@@ -103,7 +103,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
         <section className="pt-48 md:pt-64 pb-20 px-6 text-center">
           <div className="max-w-4xl mx-auto space-y-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 italic">Digital Nexus Solutions • Especialistas em Horário de Trabalho Portugal</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 italic">AtriosWork • Especialistas em Horário de Trabalho Portugal</span>
             </div>
             
             <h1 className="text-6xl md:text-9xl font-black tracking-tight text-white leading-[0.85] uppercase italic">
@@ -235,7 +235,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
               DOMINE CADA <br/><span className="text-emerald-400">HORA TRABALHADA.</span>
             </h2>
             <p className="text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-              Junte-se a milhares de profissionais que usam a melhor <strong>aplicação registo de horas</strong> da Digital Nexus Solutions. Segurança Cloud, Inteligência Fiscal e Mobilidade para o seu sucesso.
+              Junte-se a milhares de profissionais que usam a melhor <strong>aplicação registo de horas</strong> da AtriosWork. Segurança Cloud, Inteligência Fiscal e Mobilidade para o seu sucesso.
             </p>
             <div className="max-w-sm mx-auto">
                <button onClick={onSubscribe} className="w-full px-12 py-8 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-[2.5rem] text-xl shadow-[0_30px_60px_rgba(16,185,129,0.3)] hover:scale-105 active:scale-95 transition-all uppercase tracking-widest flex items-center justify-center gap-4">
@@ -257,7 +257,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
                 <span className="font-bold text-lg tracking-tighter text-white">NexusTime</span>
               </div>
               <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
-                A infraestrutura definitiva para controlo de horas manual ou digital. Uma divisão da Digital Nexus Solutions.
+                A infraestrutura definitiva para controlo de horas manual ou digital. Uma divisão da AtriosWork.
               </p>
             </div>
             
@@ -290,7 +290,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
           </div>
 
           <div className="max-w-7xl mx-auto pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-[10px] font-bold text-slate-700 uppercase tracking-[0.5em]">© 2026 Digital Nexus Solutions. Líder em Controlo de Horas de Trabalho.</p>
+            <p className="text-[10px] font-bold text-slate-700 uppercase tracking-[0.5em]">© 2026 AtriosWork. Líder em Controlo de Horas de Trabalho.</p>
             <div className="flex gap-6 opacity-30 grayscale hover:grayscale-0 transition-all items-center">
                <a href="https://www.facebook.com/share/1CSeJPHprp/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
                   <Facebook className="w-5 h-5" />

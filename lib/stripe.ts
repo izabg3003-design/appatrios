@@ -6,7 +6,7 @@ let stripePromise: Promise<Stripe | null>;
 export const getStripe = () => {
   if (!stripePromise) {
     /**
-     * CHAVE PÚBLICA OFICIAL (LIVE) - Digital Nexus Solutions
+     * CHAVE PÚBLICA OFICIAL (LIVE) - AtriosWork
      * Esta chave é segura para uso em frontend. 
      * Certifique-se de que o domínio da aplicação está autorizado no Dashboard da Stripe.
      */

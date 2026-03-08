@@ -131,7 +131,7 @@ const PublicSupportChat: React.FC = () => {
     if (messages.length === 0) {
       setMessages([{ 
         role: 'ai', 
-        text: `Olá ${userData.name.split(' ')[0]}! Sou a assistente virtual da Digital Nexus Solutions. Em que posso ajudar hoje?` 
+        text: `Olá ${userData.name.split(' ')[0]}! Sou a assistente virtual da AtriosWork. Em que posso ajudar hoje?` 
       }]);
     }
     scrollToBottom();
@@ -212,7 +212,7 @@ const PublicSupportChat: React.FC = () => {
       const firstUserIdx = rawHistory.findIndex(h => h.role === 'user');
       const history = firstUserIdx !== -1 ? rawHistory.slice(firstUserIdx) : [];
 
-      const systemInstruction = `Tu és a assistente virtual da Digital Nexus Solutions. Estás a falar com ${userData.name}.`;
+      const systemInstruction = `Tu és a assistente virtual da AtriosWork. Estás a falar com ${userData.name}.`;
 
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',

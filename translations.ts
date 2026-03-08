@@ -20,7 +20,7 @@ export const translations: Record<string, any> = {
       hero: "TRANSFORME HORAS EM",
       heroHighlight: "LUCRO REAL.",
       subhero: "O NexusTime Pro é o app de controlo de horas ideal para registar horas extra, organizar pagamentos e gerir o seu horário de trabalho em Portugal com precisão absoluta.",
-      badge: "Digital Nexus Solutions • Portugal 2026",
+      badge: "AtriosWork • Portugal 2026",
       painTitle: "Problemas no Registo",
       solutionTitle: "Solução Digital Nexus",
       pains: [
@@ -65,7 +65,7 @@ export const translations: Record<string, any> = {
         cta: "Ativar Nexus Pro"
       },
       footer: {
-        note: "Digital Nexus Solutions. Gestão de Horas de Elite para Portugal.",
+        note: "AtriosWork. Gestão de Horas de Elite para Portugal.",
         privacy: "Privacidade",
         terms: "Termos de Uso"
       }
@@ -75,7 +75,7 @@ export const translations: Record<string, any> = {
       idNexus: "ID Nexus / E-mail",
       securityKey: "Palavra-passe",
       validateAccess: "Entrar no App",
-      platformNote: "Plataforma Digital Nexus Solutions",
+      platformNote: "Plataforma AtriosWork",
       blockedTitle: "ACESSO BLOQUEADO",
       blockedMsg: "Por favor, confirme o seu e-mail ou contacte o administrador.",
       invalidTitle: "CREDENCIAIS INVÁLIDAS",

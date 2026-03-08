@@ -113,7 +113,7 @@ const AccountantPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-slate-900 rounded-lg flex items-center justify-center text-white font-black text-xs">DX</div>
               <div>
-                <h1 className="font-black text-xl uppercase tracking-tighter leading-none">Digital Nexus Solutions</h1>
+                <h1 className="font-black text-xl uppercase tracking-tighter leading-none">AtriosWork</h1>
                 <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mt-1">Infraestrutura Contabilística v16.0</p>
               </div>
             </div>
@@ -214,7 +214,7 @@ const AccountantPage: React.FC<Props> = ({ user, records, t, f, isPro }) => {
             <Building2 className="w-4 h-4" />
             <p className="text-[7px] font-black uppercase tracking-[0.2em]">Auditoria Certificada NexusTime Portugal • v16.0.4</p>
           </div>
-          <div className="text-[7px] font-bold uppercase tracking-[0.4em]">Digital Nexus Solutions — Lisboa 2026</div>
+          <div className="text-[7px] font-bold uppercase tracking-[0.4em]">AtriosWork — Lisboa 2026</div>
         </footer>
       </div>
     </div>

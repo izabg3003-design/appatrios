@@ -116,7 +116,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
           setMessages([{ 
             id: 'welcome', 
             role: 'ai', 
-            text: "Olá! Sou a assistente da Digital Nexus Solutions. Como posso ajudar com o seu controlo de horas no NexusTime?", 
+            text: "Olá! Sou a assistente da AtriosWork. Como posso ajudar com o seu controlo de horas no NexusTime?", 
             timestamp: new Date() 
           }]);
         }
@@ -238,7 +238,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
         const chatHistory = firstUserIdx !== -1 ? rawHistory.slice(firstUserIdx) : [];
 
         const systemInstruction = `
-          Tu és a assistente virtual da Digital Nexus Solutions, especialista no app NexusTime.
+          Tu és a assistente virtual da AtriosWork, especialista no app NexusTime.
           Sê profissional, direta e prestativa.
           Informações do App NexusTime:
           - Função: Controlo de horas profissional (Entrada, Saída, Pausa Almoço, Horas Extras H1/H2/H3).
@@ -246,7 +246,7 @@ const UserSupportPage: React.FC<Props> = ({ user, t }) => {
           - Relatórios: Geração de relatórios mensais e anuais em PDF (Ledger) para contabilistas.
           - Parceiros: Sistema de rede de vendedores parceiros com códigos de desconto e comissões.
           - Segurança: Dados encriptados na Nexus Cloud.
-          Se o utilizador perguntar sobre a empresa, explica que a Digital Nexus Solutions é uma infraestrutura de inteligência financeira e soberania temporal.
+          Se o utilizador perguntar sobre a empresa, explica que a AtriosWork é uma infraestrutura de inteligência financeira e soberania temporal.
           Se não souberes algo, sugere falar com um atendente humano usando o botão de suporte.
         `;
 
