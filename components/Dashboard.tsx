@@ -13,13 +13,20 @@ interface Props {
   t: (key: string) => any;
   hideValues?: boolean;
   isPro?: boolean;
+  onOpenPremium?: () => void;
 }
 
-const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues, isPro }) => {
+const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues, isPro, onOpenPremium }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
   
   // Lógica do Banner Modelo 2 (Pós-login)
   const [showPostLoginBanner, setShowPostLoginBanner] = useState(false);
@@ -75,11 +82,41 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
   const daysRemaining = useMemo(() => {
     try {
       const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
-      if (!sub?.startDate) return null;
-      const expiry = addMonths(parseISO(sub.startDate), 1);
+      let expiry;
+      if (sub?.expiryDate) expiry = parseISO(sub.expiryDate);
+      else if (sub?.startDate) expiry = addMonths(parseISO(sub.startDate), 1);
+      else return null;
       return differenceInDays(expiry, new Date());
     } catch { return null; }
   }, [user.subscription]);
+
+  const countdownText = useMemo(() => {
+    try {
+      const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
+      
+      let expiry;
+      if (sub?.expiryDate) {
+        expiry = parseISO(sub.expiryDate);
+      } else if (sub?.startDate) {
+        expiry = addMonths(parseISO(sub.startDate), 1);
+      } else {
+        return null;
+      }
+
+      const diffMs = expiry.getTime() - now.getTime();
+      if (diffMs <= 0) return 'Expirado';
+
+      const d = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+      if (d > 0) {
+        return `${d}d ${h}h ${m}m ${s}s`;
+      }
+      return `${h}h ${m}m ${s}s`;
+    } catch { return null; }
+  }, [user.subscription, now]);
 
   const days = useMemo(() => {
     return eachDayOfInterval({ 
@@ -248,11 +285,14 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
                 <ShieldAlert className="w-6 h-6" />
              </div>
              <div>
-                <h4 className="text-sm font-black uppercase tracking-widest leading-none">A sua licença expira em {daysRemaining} dias</h4>
+                <h4 className="text-sm font-black uppercase tracking-widest leading-none">A sua licença expira em {countdownText}</h4>
                 <p className="text-[10px] font-bold text-white/80 mt-1 uppercase tracking-widest opacity-80 italic">AtriosWork • Professional Cloud</p>
              </div>
           </div>
-          <button className="w-full md:w-auto px-8 py-3 bg-white text-amber-600 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-105 transition-all">
+          <button 
+            onClick={onOpenPremium}
+            className="w-full md:w-auto px-8 py-3 bg-white text-amber-600 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-105 transition-all"
+          >
             Contactar Renovação
           </button>
         </div>

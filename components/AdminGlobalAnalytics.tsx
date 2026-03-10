@@ -32,7 +32,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
       const { data: vData } = await supabase.from('vendors').select('*');
       const { data: pData } = await supabase.from('profiles').select('*');
       
-      const masterProfile = pData?.find(p => p.email === 'master@atrioswork.com' || p.email === 'izarelleBraga@gmail.com');
+      const masterProfile = pData?.find(p => p.email?.toLowerCase()?.includes('master@atrioswork.com') || p.email?.toLowerCase()?.includes('izarellebraga@gmail.com') || p.email?.toLowerCase()?.includes('master@digitalnexus.com'));
       
       let masterSub: any = {};
       try {
@@ -195,7 +195,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
     <div className="space-y-8 animate-[fadeIn_0.5s_ease-out] pb-20">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 no-print">
         <div className="space-y-1">
-          <h3 className="text-xl font-black text-white uppercase italic tracking-tighter">ESTATÍSTICAS <span className="text-emerald-400">MASTER</span></h3>
+          <h3 className="text-xl font-black text-white uppercase italic tracking-tighter">DASHBOARD <span className="text-emerald-400">MASTER</span></h3>
           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">AtriosWork — Auditoria Digital</p>
         </div>
         <div className="flex items-center gap-3">

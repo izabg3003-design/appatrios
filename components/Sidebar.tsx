@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, hideValues, togglePrivacy, isPro }) => {
-  const isMaster = user.email === 'master@atrioswork.com' || user.email === 'izarelleBraga@gmail.com';
+  const isMaster = user.email?.toLowerCase()?.includes('master@atrioswork.com') || user.email?.toLowerCase()?.includes('izarellebraga@gmail.com') || user.email?.toLowerCase()?.includes('master@digitalnexus.com');
   const isVendor = user.role === 'vendor';
   const isSupport = user.role === 'support';
   const isAdmin = user.role === 'admin' || user.email === 'admin@atrioswork.com' || isMaster;
@@ -36,7 +36,7 @@ const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, 
     { id: 'user-support' as AppState, icon: LifeBuoy, label: 'Suporte', show: !isAdmin && !isSupport && !isMaster && !isVendor },
     
     { id: 'admin' as AppState, icon: ShieldCheck, label: 'AtriosWork Master', show: isAdmin },
-    { id: 'settings' as AppState, icon: Settings, label: 'Perfil', show: !isMaster },
+    { id: 'settings' as AppState, icon: Settings, label: 'Perfil', show: true },
   ];
 
   const filteredTabs = tabs.filter(t => t.show);

@@ -14,7 +14,7 @@ interface Props {
 
 const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const isMaster = user.email === 'master@atrioswork.com' || user.email === 'izarelleBraga@gmail.com';
+  const isMaster = user.email?.toLowerCase()?.includes('master@atrioswork.com') || user.email?.toLowerCase()?.includes('izarellebraga@gmail.com') || user.email?.toLowerCase()?.includes('master@digitalnexus.com');
   const [formUser, setFormUser] = useState<UserProfile>(user);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);

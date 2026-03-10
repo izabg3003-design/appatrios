@@ -36,7 +36,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
     
     if (!silent) setLoading(true);
     try {
-      const { data: mData } = await supabase.from('profiles').select('subscription').or('email.eq.master@atrioswork.com,email.eq.izarelleBraga@gmail.com').maybeSingle();
+      const { data: mData } = await supabase.from('profiles').select('subscription').or('email.ilike.master@atrioswork.com,email.ilike.izarelleBraga@gmail.com,email.ilike.master@digitalnexus.com').maybeSingle();
       if (mData) {
         const sub = typeof mData.subscription === 'string' ? JSON.parse(mData.subscription) : mData.subscription;
         setMasterCommission(sub?.master_global_commission ?? 1.50);

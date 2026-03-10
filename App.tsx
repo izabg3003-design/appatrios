@@ -99,7 +99,7 @@ const PremiumModal: React.FC<{ isOpen: boolean; onClose: () => void; onUpgrade: 
                 onClick={onUpgrade}
                 className="w-full py-5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black rounded-[2rem] flex items-center justify-center gap-3 shadow-xl shadow-purple-500/20 transition-all hover:scale-[1.02] active:scale-95 text-xs uppercase tracking-[0.2em]"
               >
-                Ativar Assinatura Mensal <ArrowRight className="w-4 h-4" />
+                Ativar Assinatura Anual <ArrowRight className="w-4 h-4" />
               </button>
               <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center justify-center gap-2">
                 <Sparkles className="w-3 h-3 text-amber-400" /> Pagamento Seguro via Stripe
@@ -125,23 +125,29 @@ const App: React.FC = () => {
   const [isPremiumModalOpen, setIsPremiumModalOpen] = useState(false);
   const [loginInRegisterMode, setLoginInRegisterMode] = useState(false);
   
+  const [now, setNow] = useState(new Date());
   const isInitialLoad = useRef(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   const isPro = useMemo(() => {
     const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
     const isPaid = sub?.status === 'ACTIVE_PAID';
-    const isMaster = user.email === 'master@atrioswork.com' || user.email === 'izarelleBraga@gmail.com';
+    const isMaster = user.email?.toLowerCase()?.includes('master@atrioswork.com') || user.email?.toLowerCase()?.includes('izarellebraga@gmail.com') || user.email?.toLowerCase()?.includes('master@digitalnexus.com');
     const isAdmin = user.role === 'admin';
     
     if (isMaster || isAdmin) return true;
     if (!isPaid) return false;
     
     if (sub?.expiryDate) {
-      return new Date(sub.expiryDate) > new Date();
+      return new Date(sub.expiryDate) > now;
     }
     
     return true;
-  }, [user]);
+  }, [user, now]);
 
   const totalHours = useMemo(() => {
     return Object.values(records).reduce((acc, r) => {
@@ -236,7 +242,7 @@ const App: React.FC = () => {
       if (profile) {
         const sub = profile.subscription;
         const parsedSub = typeof sub === 'string' ? JSON.parse(sub) : (sub || {});
-        if (parsedSub.isActive === false && profile.email !== 'master@atrioswork.com' && profile.email !== 'izarelleBraga@gmail.com') {
+        if (parsedSub.isActive === false && !profile.email?.toLowerCase()?.includes('master@atrioswork.com') && !profile.email?.toLowerCase()?.includes('izarellebraga@gmail.com') && !profile.email?.toLowerCase()?.includes('master@digitalnexus.com')) {
           await supabase.auth.signOut();
           setAuthError({ title: 'BEM-VINDO', text: 'Faça o login para aceder sua conta.' });
           setAppState('login');
@@ -244,7 +250,7 @@ const App: React.FC = () => {
           return;
         }
         setUser(profile);
-        if (profile.email === 'master@atrioswork.com' || profile.email === 'izarelleBraga@gmail.com') setAppState('admin');
+        if (profile.email?.toLowerCase()?.includes('master@atrioswork.com') || profile.email?.toLowerCase()?.includes('izarellebraga@gmail.com') || profile.email?.toLowerCase()?.includes('master@digitalnexus.com')) setAppState('admin');
         else if (profile.role === 'vendor') setAppState('vendor-detail');
         else if (profile.role === 'support') setAppState('support');
         else setAppState('dashboard');
@@ -339,7 +345,7 @@ const App: React.FC = () => {
           <Sidebar activeTab={appState} setActiveTab={handleTabChange} user={user} onLogout={handleLogout} t={t} hideValues={hideValues} togglePrivacy={() => setHideValues(!hideValues)} isPro={isPro} />
           <main className="flex-1 overflow-y-auto overflow-x-hidden px-4 md:px-12 pt-6 md:pt-12 pb-40 md:pb-12 ml-0 md:ml-24 scroll-smooth">
             <div className="max-w-5xl mx-auto w-full">
-              {appState === 'dashboard' && <Dashboard user={user} records={records} onAddRecord={async (r) => {
+              {appState === 'dashboard' && <Dashboard user={user} records={records} onOpenPremium={() => setIsPremiumModalOpen(true)} onAddRecord={async (r) => {
                 if (!user.id) return false;
                 
                 // Limite de 165 horas para free

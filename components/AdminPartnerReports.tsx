@@ -23,7 +23,7 @@ const AdminPartnerReports: React.FC<Props> = ({ f }) => {
       const { data: vData } = await supabase.from('vendors').select('*');
       const { data: pData } = await supabase.from('profiles').select('*');
       
-      const masterData = pData?.find((p: any) => p.email === 'master@atrioswork.com' || p.email === 'izarelleBraga@gmail.com');
+      const masterData = pData?.find((p: any) => p.email?.toLowerCase()?.includes('master@atrioswork.com') || p.email?.toLowerCase()?.includes('izarellebraga@gmail.com') || p.email?.toLowerCase()?.includes('master@digitalnexus.com'));
       if (masterData) {
         let sub: any = {};
         try { sub = typeof masterData.subscription === 'string' ? JSON.parse(masterData.subscription) : (masterData.subscription || {}); } catch(e) {}

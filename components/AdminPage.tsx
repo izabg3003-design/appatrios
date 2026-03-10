@@ -38,8 +38,18 @@ const generateVendorCode = () => {
 };
 
 const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, onViewVendorSales, t, onUpdateProfile, hideValues }) => {
-  const isMaster = currentUser?.email === 'master@atrioswork.com' || currentUser?.email === 'izarelleBraga@gmail.com';
+  const isMaster = useMemo(() => {
+    const email = currentUser?.email?.toLowerCase() || '';
+    return email.includes('master@atrioswork.com') || email.includes('izarellebraga@gmail.com') || email.includes('master@digitalnexus.com');
+  }, [currentUser]);
+
   const [activeSubTab, setActiveSubTab] = useState<'users' | 'vendors' | 'reports' | 'analytics' | 'support' | 'profile' | 'banners' | 'ledger' | 'notifications'>('users');
+
+  useEffect(() => {
+    if (isMaster) {
+      setActiveSubTab('analytics');
+    }
+  }, [isMaster]);
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [vendors, setVendors] = useState<any[]>([]);
   const [supportStaff, setSupportStaff] = useState<UserProfile[]>([]);
@@ -96,7 +106,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
     setLoading(true);
     try {
       if (activeSubTab === 'users') {
-        const { data } = await supabase.from('profiles').select('*').neq('role', 'vendor').neq('role', 'support').neq('email', 'master@atrioswork.com');
+        const { data } = await supabase.from('profiles').select('*').neq('role', 'vendor').neq('role', 'support').not('email', 'ilike', '%master@atrioswork.com%').not('email', 'ilike', '%izarellebraga@gmail.com%').not('email', 'ilike', '%master@digitalnexus.com%');
         setUsers(data || []);
       } else if (activeSubTab === 'vendors') {
         const { data: vData } = await supabase.from('vendors').select('*');
@@ -325,14 +335,14 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
       else sub = profile?.subscription || {};
 
       const expiryDate = new Date();
-      expiryDate.setMonth(expiryDate.getMonth() + 1);
+      expiryDate.setDate(expiryDate.getDate() + days);
 
       const updatedSub = { 
         ...sub, 
         status: 'ACTIVE_PAID', 
         isActive: true,
         expiryDate: expiryDate.toISOString(),
-        promotionDays: 30
+        promotionDays: days
       };
 
       const { error } = await supabase.from('profiles').update({ subscription: updatedSub }).eq('id', userId);
@@ -442,7 +452,7 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
         </div>
         
         <div className="flex gap-2 p-1 bg-slate-800/40 rounded-2xl border border-slate-700/50 flex-wrap">
-          {isMaster && <button onClick={() => setActiveSubTab('analytics')} className={`px-4 py-2 rounded-xl transition-all text-[9px] font-black uppercase tracking-widest ${activeSubTab === 'analytics' ? 'bg-amber-600 text-slate-950 shadow-lg' : 'text-slate-500 hover:text-white'}`}>Estatísticas</button>}
+          {isMaster && <button onClick={() => setActiveSubTab('analytics')} className={`px-4 py-2 rounded-xl transition-all text-[9px] font-black uppercase tracking-widest ${activeSubTab === 'analytics' ? 'bg-amber-600 text-slate-950 shadow-lg' : 'text-slate-500 hover:text-white'}`}>Dashboard</button>}
           {isMaster && <button onClick={() => setActiveSubTab('ledger')} className={`px-4 py-2 rounded-xl transition-all text-[9px] font-black uppercase tracking-widest ${activeSubTab === 'ledger' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>Plataforma</button>}
           <button onClick={() => setActiveSubTab('notifications')} className={`px-4 py-2 rounded-xl transition-all text-[9px] font-black uppercase tracking-widest ${activeSubTab === 'notifications' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}><BellRing className="w-3.5 h-3.5 inline mr-1" /> Alertas</button>
           <button onClick={() => setActiveSubTab('users')} className={`px-4 py-2 rounded-xl transition-all text-[9px] font-black uppercase tracking-widest ${activeSubTab === 'users' ? 'bg-purple-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>Membros</button>

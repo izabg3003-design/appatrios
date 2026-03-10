@@ -48,7 +48,7 @@ const PublicSupportChat: React.FC = () => {
       const { count } = await supabase
         .from('profiles')
         .select('*', { count: 'exact', head: true })
-        .or(`role.in.(support,admin),email.eq.master@atrioswork.com,email.eq.izarelleBraga@gmail.com`)
+        .or(`role.in.(support,admin),email.ilike.master@atrioswork.com,email.ilike.izarelleBraga@gmail.com,email.ilike.master@digitalnexus.com`)
         .gt('updated_at', fiveMinutesAgo);
       
       setIsAgentsOnline((count || 0) > 0);
@@ -249,7 +249,7 @@ const PublicSupportChat: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[2000] font-inter flex flex-col items-end">
+    <div className="fixed bottom-28 md:bottom-6 right-6 z-[2000] font-inter flex flex-col items-end">
       {/* AtriosWork Incentive Nudge */}
       {showNudge && !isOpen && (
         <div className="mb-4 mr-2 animate-[slideUp_0.5s_ease-out]">
@@ -350,7 +350,7 @@ const PublicSupportChat: React.FC = () => {
                     </div>
                     <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
                       {isAgentsOnline === false 
-                        ? "Neste momento os consultores estão offline. Deixe a sua dúvida, responderemos assim que possível." 
+                        ? "A nossa equipa está a caminho! Responderemos em poucos segundos, aguarde um momento." 
                         : "Conectado à equipa de suporte AtriosWork. Aguarde a resposta de um consultor."}
                     </p>
                   </div>
