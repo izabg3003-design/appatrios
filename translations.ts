@@ -45,8 +45,8 @@ export const translations: Record<string, any> = {
         badge: "Oferta de Lançamento",
         title: "Vantagens",
         highlight: "Exclusivas Elite:",
-        period: "/Ano",
-        sub: "Pagamento Único, Uso Ilimitado",
+        period: "/Mês",
+        sub: "Pagamento Mensal, Uso Ilimitado",
         cta: "Ativar Licença Agora",
         advantages: [
           "App Registo de Horas Atómico",

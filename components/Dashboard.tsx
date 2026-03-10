@@ -76,7 +76,7 @@ const Dashboard: React.FC<Props> = ({ user, records, onAddRecord, t, hideValues,
     try {
       const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : user.subscription;
       if (!sub?.startDate) return null;
-      const expiry = addYears(parseISO(sub.startDate), 1);
+      const expiry = addMonths(parseISO(sub.startDate), 1);
       return differenceInDays(expiry, new Date());
     } catch { return null; }
   }, [user.subscription]);

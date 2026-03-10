@@ -41,8 +41,8 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
     confirmPassword: ''
   });
 
-  const basePrice = 14.99;
-  const originalPrice = 29.90;
+  const basePrice = 9.90;
+  const originalPrice = 19.80;
   
   const finalPrice = useMemo(() => {
     const discount = appliedDiscountPercent / 100;
@@ -372,7 +372,7 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
                 
                 <div className="space-y-1">
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="text-2xl font-black text-slate-600 line-through opacity-50 italic">29,90€</span>
+                    <span className="text-2xl font-black text-slate-600 line-through opacity-50 italic">19,80€</span>
                     <span className="px-2 py-0.5 bg-red-500/10 border border-red-500/20 rounded text-red-500 text-[8px] font-black uppercase">-50% OFF</span>
                   </div>
                   

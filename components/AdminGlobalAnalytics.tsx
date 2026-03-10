@@ -70,9 +70,9 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
           const vendorComm = knownVendor?.commission_rate ?? globalComm;
           const vendorDisc = (vendorSub.custom_discount ?? 5) / 100;
 
-          const rev = salesForThisCode.length * (14.99 * (1 - vendorDisc));
+          const rev = salesForThisCode.length * (9.90 * (1 - vendorDisc));
           const comm = salesForThisCode.length * vendorComm;
-          const disc = salesForThisCode.length * (14.99 * vendorDisc);
+          const disc = salesForThisCode.length * (9.90 * vendorDisc);
 
           totalCommissionsPaid += comm;
           totalDiscountsGiven += disc;
@@ -88,7 +88,7 @@ const AdminGlobalAnalytics: React.FC<Props> = ({ f }) => {
 
         setVendorSalesBreakdown(breakdown);
 
-        const price = 14.99;
+        const price = 9.90;
         const ivaRate = 0.23;
         const stripePercent = 0.015;
         const stripeFlat = 0.25;

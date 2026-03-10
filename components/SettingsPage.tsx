@@ -14,7 +14,7 @@ interface Props {
 
 const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const isMaster = user.email === 'master@digitalnexus.com' || user.email === 'izarelleBraga@gmail.com';
+  const isMaster = user.email === 'master@atrioswork.com' || user.email === 'izarelleBraga@gmail.com';
   const [formUser, setFormUser] = useState<UserProfile>(user);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -27,7 +27,7 @@ const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) 
     setFormUser(user); 
   }, [user]);
 
-  const getNexusId = () => {
+  const getAtriosWorkId = () => {
     if (hideValues) return "••••••••";
     try {
       const sub = typeof user.subscription === 'string' ? JSON.parse(user.subscription) : (user.subscription || {});
@@ -78,7 +78,7 @@ const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) 
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Fingerprint className="w-4 h-4 text-purple-400" />
-            <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Nexus Identity</span>
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">AtriosWork Identity</span>
           </div>
           <h2 className="text-4xl font-black italic tracking-tighter text-white uppercase">{t('settings.title').split(' ')[0]} <span className="text-purple-400">{t('settings.title').split(' ').slice(1).join(' ')}</span></h2>
         </div>
@@ -106,7 +106,7 @@ const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) 
                 }} />
               </div>
               <h3 className="text-xl font-black text-white italic tracking-tight uppercase flex items-center gap-2">{isMaster && <Crown className="w-4 h-4 text-amber-500" />}{formUser.name}</h3>
-              <p className="text-[10px] font-black text-purple-500 uppercase tracking-widest mt-1">#{getNexusId()}</p>
+              <p className="text-[10px] font-black text-purple-500 uppercase tracking-widest mt-1">#{getAtriosWorkId()}</p>
            </div>
 
            {/* Painel Fiscal / IVA */}
@@ -224,7 +224,7 @@ const SettingsPage: React.FC<Props> = ({ user, setUser, t, hideValues, isPro }) 
               <div className="absolute inset-0 flex items-center justify-center bg-slate-950/40 backdrop-blur-[2px] z-10">
                 <div className="bg-amber-500/20 border border-amber-500/30 px-6 py-3 rounded-2xl flex items-center gap-3">
                   <Crown className="w-5 h-5 text-amber-500" />
-                  <span className="text-xs font-black text-amber-500 uppercase tracking-[0.2em]">Nexus PRO Required</span>
+                  <span className="text-xs font-black text-amber-500 uppercase tracking-[0.2em]">AtriosWork PRO Required</span>
                 </div>
               </div>
             )}

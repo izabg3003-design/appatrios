@@ -1,4 +1,4 @@
-
+// AtriosWork Payment Processor - Base Price: 9.90€
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2"
 
@@ -18,7 +18,7 @@ serve(async (req) => {
     const requestData = await req.json()
     const { token, email, description, vendorCode, discountPercent } = requestData
 
-    console.log(`[NEXUS-PAY] A receber pedido para: ${email}`)
+    console.log(`[ATRIOSWORK-PAY] A receber pedido para: ${email}`)
 
     if (!token) throw new Error("Token de pagamento não fornecido.")
     if (!email) throw new Error("E-mail do cliente não fornecido.")
@@ -34,7 +34,7 @@ serve(async (req) => {
     const supabaseAdmin = createClient(supabaseUrl, supabaseKey)
 
     // 4. Cálculo do Valor Final Dinâmico
-    const BASE_PRICE = 14.99
+    const BASE_PRICE = 9.90
     let finalPrice = BASE_PRICE
     let discountApplied = false
 
@@ -43,7 +43,7 @@ serve(async (req) => {
       discountApplied = true
       const discountRate = discountPercent / 100
       finalPrice = BASE_PRICE * (1 - discountRate)
-      console.log(`[NEXUS-PAY] Desconto de ${discountPercent}% aplicado via checkout.`)
+      console.log(`[ATRIOSWORK-PAY] Desconto de ${discountPercent}% aplicado via checkout.`)
     } 
     // FALLBACK: Se não recebeu percentagem mas tem código, tenta localizar no DB
     else if (vendorCode) {
@@ -72,7 +72,7 @@ serve(async (req) => {
           const dbDiscount = sub.custom_discount ?? 5
           const discountRate = dbDiscount / 100
           finalPrice = BASE_PRICE * (1 - discountRate)
-          console.log(`[NEXUS-PAY] Desconto de ${dbDiscount}% recuperado da DB do parceiro.`)
+          console.log(`[ATRIOSWORK-PAY] Desconto de ${dbDiscount}% recuperado da DB do parceiro.`)
         } else {
           discountApplied = true
           finalPrice = BASE_PRICE * 0.95
@@ -94,16 +94,16 @@ serve(async (req) => {
     params.append('confirm', 'true')
     params.append('payment_method_data[type]', 'card')
     params.append('payment_method_data[card][token]', token)
-    params.append('description', description || `Licença NexusTime Elite - ${email}`)
+    params.append('description', description || `Licença AtriosWork Elite - ${email}`)
     params.append('receipt_email', email)
     params.append('off_session', 'true')
-    params.append('return_url', 'https://nexustimepro.pt/success')
+    params.append('return_url', 'https://atrioswork.com/success')
     
     // Metadados para auditoria no Stripe Dashboard
     params.append('metadata[vendor_code]', vendorCode || 'DIRETO')
     params.append('metadata[discount_percent]', discountApplied ? (discountPercent || 'DB_SYNC').toString() : '0%')
 
-    console.log(`[NEXUS-PAY] Montante final: ${amountCents} cêntimos (${finalPrice}€). A contactar Stripe...`)
+    console.log(`[ATRIOSWORK-PAY] Montante final: ${amountCents} cêntimos (${finalPrice}€). A contactar Stripe...`)
 
     // 6. Execução da Chamada à API do Stripe
     const stripeResponse = await fetch('https://api.stripe.com/v1/payment_intents', {
@@ -117,7 +117,7 @@ serve(async (req) => {
     const stripeData = await stripeResponse.json()
 
     if (!stripeResponse.ok) {
-      console.error("[NEXUS-STRIPE-ERROR]:", JSON.stringify(stripeData))
+      console.error("[ATRIOSWORK-STRIPE-ERROR]:", JSON.stringify(stripeData))
       const errorMessage = stripeData.error?.message || "Erro desconhecido no processamento bancário."
       throw new Error(errorMessage)
     }
@@ -138,7 +138,7 @@ serve(async (req) => {
     )
 
   } catch (error: any) {
-    console.error("[NEXUS-FATAL-ERROR]:", error.message)
+    console.error("[ATRIOSWORK-FATAL-ERROR]:", error.message)
     
     return new Response(
       JSON.stringify({ 

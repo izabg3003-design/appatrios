@@ -149,7 +149,7 @@ const LoginPage: React.FC<Props> = ({ onLogin, onBack, t, externalError, initial
         </div>
 
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-black italic text-white tracking-tighter">NEXUS<span className="text-purple-400">TIME</span></h2>
+          <h2 className="text-4xl font-black italic text-white tracking-tighter">ATRIOS<span className="text-purple-400">WORK</span></h2>
           <p className="text-slate-500 mt-2 text-[10px] font-black uppercase tracking-[0.3em]">{isRegistering ? 'CRIE A SUA CONTA AGORA' : t('login.platformNote')}</p>
         </div>
 
@@ -189,14 +189,14 @@ const LoginPage: React.FC<Props> = ({ onLogin, onBack, t, externalError, initial
           <>
             <form onSubmit={handleLogin} className="space-y-5">
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">{t('login.idNexus')}</label>
+                <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">{t('login.idAtriosWork')}</label>
                 <div className="relative group">
                   <User className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-600 group-focus-within:text-purple-400 transition-colors" />
                   <input 
                     type="email" 
                     required
                     className="w-full bg-slate-950/50 border border-slate-800 rounded-2xl pl-14 pr-4 py-5 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-white font-medium"
-                    placeholder="nexus@digital.com"
+                    placeholder="user@atrioswork.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />

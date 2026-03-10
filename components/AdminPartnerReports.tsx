@@ -71,7 +71,7 @@ const AdminPartnerReports: React.FC<Props> = ({ f }) => {
       const vendorComm = vSub.custom_commission ?? vendor.commission_rate ?? masterConfig.commission;
       const vendorDisc = (vSub.custom_discount ?? 5) / 100;
 
-      const totalRevenue = vendorSales.length * (14.99 * (1 - vendorDisc));
+      const totalRevenue = vendorSales.length * (9.90 * (1 - vendorDisc));
       const commissionAmount = vendorSales.length * vendorComm;
 
       return {

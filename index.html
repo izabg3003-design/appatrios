@@ -37,7 +37,7 @@
       "description": "Software profissional para controlo de horas de trabalho, gestão de horas extra e relatórios automáticos para IRS em Portugal.",
       "offers": {
         "@type": "Offer",
-        "price": "14.99",
+        "price": "9.90",
         "priceCurrency": "EUR"
       },
       "author": {
@@ -186,7 +186,7 @@
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('./sw.js', { scope: './' }).then(reg => {
-            console.log('Nexus Sentinel Service Worker ativo na origem:', reg.scope);
+            console.log('AtriosWork Sentinel Service Worker ativo na origem:', reg.scope);
           }).catch(err => {
             console.warn('Registro de SW ignorado ou falhou:', err.message);
           });

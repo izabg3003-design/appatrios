@@ -36,7 +36,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
     
     if (!silent) setLoading(true);
     try {
-      const { data: mData } = await supabase.from('profiles').select('subscription').or('email.eq.master@digitalnexus.com,email.eq.izarelleBraga@gmail.com').maybeSingle();
+      const { data: mData } = await supabase.from('profiles').select('subscription').or('email.eq.master@atrioswork.com,email.eq.izarelleBraga@gmail.com').maybeSingle();
       if (mData) {
         const sub = typeof mData.subscription === 'string' ? JSON.parse(mData.subscription) : mData.subscription;
         setMasterCommission(sub?.master_global_commission ?? 1.50);
@@ -83,7 +83,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
         }
       }
     } catch (e) {
-      console.error("Nexus Fetch Error:", e);
+      console.error("AtriosWork Fetch Error:", e);
     } finally {
       if (!silent) setLoading(false);
     }
@@ -100,13 +100,13 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
       if (!authUser) return;
 
       const targetId = authUser.id;
-      const generatedCode = (currentUser?.vendor_code || ('NX-' + Math.random().toString(36).substr(2, 5).toUpperCase())).trim().toUpperCase();
+      const generatedCode = (currentUser?.vendor_code || ('AW-' + Math.random().toString(36).substr(2, 5).toUpperCase())).trim().toUpperCase();
       
       await supabase.from('profiles').update({ vendor_code: generatedCode, role: 'vendor' }).eq('id', targetId);
 
       await supabase.from('vendors').upsert({
         id: targetId,
-        name: currentUser?.name || authUser.user_metadata?.full_name || 'Parceiro Nexus',
+        name: currentUser?.name || authUser.user_metadata?.full_name || 'Parceiro AtriosWork',
         email: currentUser?.email || authUser.email || '',
         code: generatedCode,
         commission_rate: masterCommission,
@@ -119,17 +119,17 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
         window.location.reload();
       }
     } catch (e) {
-      console.error("Nexus Auto-sync Failure:", e);
+      console.error("AtriosWork Auto-sync Failure:", e);
     } finally {
       setIsSyncing(false);
     }
   };
 
-  const getMemberNexusId = (member: UserProfile) => {
+  const getMemberAtriosWorkId = (member: UserProfile) => {
     try {
       const sub = typeof member.subscription === 'string' ? JSON.parse(member.subscription) : member.subscription;
-      return sub?.id || 'DX-PENDING';
-    } catch { return 'DX-PENDING'; }
+      return sub?.id || 'AW-PENDING';
+    } catch { return 'AW-PENDING'; }
   };
 
   const totalCommissionEarned = realSalesCount * (vendor?.commission_rate || masterCommission);
@@ -137,7 +137,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
   if (loading && !isSyncing) return (
     <div className="h-[60vh] flex flex-col items-center justify-center space-y-4">
       <Loader2 className="w-12 h-12 text-green-500 animate-spin" />
-      <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Sincronizando Nexus Cloud...</p>
+      <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Sincronizando AtriosWork Cloud...</p>
     </div>
   );
 
@@ -146,7 +146,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
       <div className="w-full max-w-md bg-slate-800/40 border border-slate-800 p-12 rounded-[3rem] text-center space-y-6 shadow-2xl relative overflow-hidden">
         <Fingerprint className="w-16 h-16 text-slate-600 mx-auto mb-4" />
         <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Acesso <span className="text-amber-500">Pendente</span></h3>
-        <p className="text-slate-400 text-sm leading-relaxed">A sua conta de parceiro Digital Nexus está a ser configurada.</p>
+        <p className="text-slate-400 text-sm leading-relaxed">A sua conta de parceiro AtriosWork está a ser configurada.</p>
         <button onClick={() => handleAutoSync()} className="w-full bg-green-600 hover:bg-green-500 text-slate-900 font-black py-5 rounded-2xl transition-all flex flex-col items-center gap-1">
           <Zap className="w-5 h-5" />
           <span className="text-xs uppercase tracking-widest">VINCULAR AGORA</span>
@@ -162,7 +162,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
           {!isVendorSelf && typeof onBack === 'function' && (
             <button onClick={onBack} className="flex items-center gap-3 text-slate-500 hover:text-white transition-all group mb-2">
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Nexus Command Hub</span>
+              <span className="text-[10px] font-black uppercase tracking-widest">AtriosWork Command Hub</span>
             </button>
           )}
           <div className="flex items-center gap-4">
@@ -195,7 +195,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
           <p className="text-5xl font-black text-white tracking-tighter">{realSalesCount}</p>
           <div className="flex items-center gap-2 text-green-400">
              <TrendingUp className="w-3 h-3" />
-             <span className="text-[9px] font-black uppercase">Live Nexus Sync</span>
+             <span className="text-[9px] font-black uppercase">Live AtriosWork Sync</span>
           </div>
         </div>
 
@@ -255,7 +255,7 @@ const VendorDetailPage: React.FC<Props> = ({ vendorId, currentUser, onBack, f, i
                     <div>
                       <p className="text-sm font-bold text-white leading-tight">{member.name}</p>
                       <p className="text-[9px] text-slate-500 font-mono font-bold mt-1 tracking-[0.15em] uppercase">
-                         ID: <span className="text-purple-400">{getMemberNexusId(member)}</span>
+                         ID: <span className="text-purple-400">{getMemberAtriosWorkId(member)}</span>
                       </p>
                     </div>
                   </div>

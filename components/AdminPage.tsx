@@ -325,14 +325,14 @@ const AdminPage: React.FC<Props> = ({ currentUser, f, onLogout, onViewVendor, on
       else sub = profile?.subscription || {};
 
       const expiryDate = new Date();
-      expiryDate.setDate(expiryDate.getDate() + days);
+      expiryDate.setMonth(expiryDate.getMonth() + 1);
 
       const updatedSub = { 
         ...sub, 
         status: 'ACTIVE_PAID', 
         isActive: true,
         expiryDate: expiryDate.toISOString(),
-        promotionDays: days
+        promotionDays: 30
       };
 
       const { error } = await supabase.from('profiles').update({ subscription: updatedSub }).eq('id', userId);

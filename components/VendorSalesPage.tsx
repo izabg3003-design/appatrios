@@ -122,17 +122,17 @@ const VendorSalesPage: React.FC<Props> = ({ user, adminOverrideVendor, onBackToA
           {adminOverrideVendor && (
             <button onClick={onBackToAdmin} className="flex items-center gap-2 text-slate-500 hover:text-white transition-all mb-4 group">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Nexus Command Hub</span>
+              <span className="text-[10px] font-black uppercase tracking-widest">AtriosWork Command Hub</span>
             </button>
           )}
           <div className="flex items-center gap-2">
             <ShoppingCart className="w-4 h-4 text-green-400" />
-            <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Nexus Commercial Ledger</span>
+            <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">AtriosWork Commercial Ledger</span>
           </div>
           <h2 className="text-4xl font-black text-white italic tracking-tighter uppercase">GAVETA DE <span className="text-green-400">VENDAS</span></h2>
           
           <div className="flex flex-col gap-1 mt-4">
-            <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest">Responsável Nexus: <span className="text-white">{vendorName}</span></p>
+            <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest">Responsável AtriosWork: <span className="text-white">{vendorName}</span></p>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50">
                 <Tag className="w-3 h-3 text-green-500" />
@@ -234,7 +234,7 @@ const VendorSalesPage: React.FC<Props> = ({ user, adminOverrideVendor, onBackToA
                     <td className="px-10 py-6 text-right">
                       <div className="flex flex-col items-end">
                         <p className="text-white text-xs font-black font-mono tracking-widest">{getMemberDate(item)}</p>
-                        <p className="text-[9px] text-slate-600 font-black uppercase tracking-tighter mt-1">Processado por NexusCloud</p>
+                        <p className="text-[9px] text-slate-600 font-black uppercase tracking-tighter mt-1">Processado por AtriosWorkCloud</p>
                       </div>
                     </td>
                   </tr>

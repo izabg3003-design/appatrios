@@ -134,11 +134,11 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
     startAlarm();
     
     if (notificationsEnabled) {
-      const n = new Notification("Digital Nexus - ALERTA URGENTE", {
+      const n = new Notification("AtriosWork - ALERTA URGENTE", {
         body: `NOVO TICKET DE: ${ticket.profiles?.name || 'Visitante'}\n"${ticket.last_message}"`,
         icon: "/favicon.ico",
         requireInteraction: true, // A notificação não desaparece até o usuário clicar/fechar
-        tag: "nexus-alert" // Evita múltiplas notificações iguais
+        tag: "atrioswork-alert" // Evita múltiplas notificações iguais
       });
       n.onclick = () => {
         window.focus();
@@ -151,7 +151,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
     fetchTickets();
     requestNotificationPermission();
 
-    const ticketChannel = supabase.channel('nexus_support_global_sync')
+    const ticketChannel = supabase.channel('atrioswork_support_global_sync')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'support_tickets' }, () => { 
         fetchTickets(true); 
       })
@@ -170,7 +170,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
        setChatMessages(data || []);
     };
     fetchMsgs();
-    const chatChannel = supabase.channel(`nexus_chat_agent_sync_${selectedUser.id}`)
+    const chatChannel = supabase.channel(`atrioswork_chat_agent_sync_${selectedUser.id}`)
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages', filter: `user_id=eq.${selectedUser.id}` }, payload => {
         setChatMessages(prev => {
           if (prev.some(m => m.id === payload.new.id)) return prev;
@@ -232,7 +232,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
       setSelectedUser(null);
       await fetchTickets();
     } catch (err: any) {
-      console.error("Nexus Resolve Error:", err);
+      console.error("AtriosWork Resolve Error:", err);
     } finally {
       setLoading(false);
     }
@@ -309,7 +309,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
                    Marcar Resolvido
                  </button>
                  <div className="bg-slate-950/50 p-1.5 rounded-2xl border border-slate-800 flex">
-                    {[{ id: 'chat', label: 'Conversa', icon: MessageSquare }, { id: 'info', label: 'Ficha Nexus', icon: Info }].map(v => (
+                    {[{ id: 'chat', label: 'Conversa', icon: MessageSquare }, { id: 'info', label: 'Ficha AtriosWork', icon: Info }].map(v => (
                         <button key={v.id} onClick={() => setActiveView(v.id as any)} className={`px-5 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${activeView === v.id ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-white'}`}>
                           <v.icon className="w-3.5 h-3.5" /> {v.label}
                         </button>
@@ -344,7 +344,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
                       <div className="w-24 h-24 bg-slate-950 border-2 border-blue-500/20 rounded-3xl flex items-center justify-center"><User className="w-12 h-12 text-blue-400" /></div>
                       <div>
                          <h4 className="text-3xl font-black text-white italic tracking-tighter uppercase">{selectedUser.name}</h4>
-                         <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mt-1">Status: <span className="text-white">Registo Nexus</span></p>
+                         <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mt-1">Status: <span className="text-white">Registo AtriosWork</span></p>
                       </div>
                    </div>
                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -369,7 +369,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
              </div>
            ) : activeChats.map(ticket => {
              const tp = getProfileFromTicket(ticket);
-             const name = tp?.name || "Visitante Nexus";
+             const name = tp?.name || "Visitante AtriosWork";
              const email = tp?.email || "Email Oculto";
              
              return (

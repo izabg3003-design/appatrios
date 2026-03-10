@@ -99,7 +99,7 @@ const PremiumModal: React.FC<{ isOpen: boolean; onClose: () => void; onUpgrade: 
                 onClick={onUpgrade}
                 className="w-full py-5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black rounded-[2rem] flex items-center justify-center gap-3 shadow-xl shadow-purple-500/20 transition-all hover:scale-[1.02] active:scale-95 text-xs uppercase tracking-[0.2em]"
               >
-                Ativar Assinatura Anual <ArrowRight className="w-4 h-4" />
+                Ativar Assinatura Mensal <ArrowRight className="w-4 h-4" />
               </button>
               <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center justify-center gap-2">
                 <Sparkles className="w-3 h-3 text-amber-400" /> Pagamento Seguro via Stripe
@@ -341,10 +341,33 @@ const App: React.FC = () => {
             <div className="max-w-5xl mx-auto w-full">
               {appState === 'dashboard' && <Dashboard user={user} records={records} onAddRecord={async (r) => {
                 if (!user.id) return false;
+                
+                // Limite de 165 horas para free
                 if (!isPro && totalHours >= 165 && !records[r.date]) {
                   alert("Limite de 165 horas atingido na versão gratuita. Ative a sua licença PRO para continuar a registar.");
                   return false;
                 }
+
+                // Limite de 4 vales (adiantamentos) por mês para free
+                if (!isPro && r.advance > 0) {
+                  const rDate = new Date(r.date);
+                  const currentMonth = rDate.getMonth();
+                  const currentYear = rDate.getFullYear();
+                  
+                  const monthlyAdvances = Object.values(records).filter(rec => {
+                    const recDate = new Date(rec.date);
+                    return rec.advance > 0 && 
+                           recDate.getMonth() === currentMonth && 
+                           recDate.getFullYear() === currentYear &&
+                           rec.date !== r.date; // Não contar o próprio dia se for um update
+                  });
+
+                  if (monthlyAdvances.length >= 4 && (!records[r.date] || records[r.date].advance === 0)) {
+                    alert("Limite de 4 vales mensais atingido na versão gratuita. Atualize para o plano PRO para inserir vales ilimitados.");
+                    return false;
+                  }
+                }
+
                 const { error } = await supabase.from('work_records').upsert({ user_id: user.id, date: r.date, data: r }, { onConflict: 'user_id,date' });
                 if (error) return false;
                 setRecords(prev => ({ ...prev, [r.date]: r }));
