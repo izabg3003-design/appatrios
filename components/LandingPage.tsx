@@ -87,7 +87,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
       <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-4 bg-slate-950/90 backdrop-blur-xl border-b border-white/5' : 'py-8 bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/atrios_logo_v2.png" className="w-10 h-10 object-contain rounded-xl shadow-lg" alt="AtriosWork Logo" />
+            <img src="./atrios_logo_v2.png" className="w-10 h-10 object-contain rounded-xl shadow-lg" alt="AtriosWork Logo" />
             <span className="font-bold text-xl tracking-tighter text-white">Atrios<span className="text-emerald-400">Work</span></span>
           </div>
           <div className="flex items-center gap-6">
@@ -253,7 +253,7 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
             <div className="col-span-1 md:col-span-1 space-y-6 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-3">
-                <img src="/atrios_logo_v2.png" className="w-8 h-8 object-contain rounded-lg" alt="AtriosWork Logo" />
+                <img src="./atrios_logo_v2.png" className="w-8 h-8 object-contain rounded-lg" alt="AtriosWork Logo" />
                 <span className="font-bold text-lg tracking-tighter text-white">AtriosWork</span>
               </div>
               <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">

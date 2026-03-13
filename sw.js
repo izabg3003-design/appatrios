@@ -3,7 +3,7 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  '/atrios_logo_v2.png'
+  './atrios_logo_v2.png'
 ];
 
 self.addEventListener('install', (event) => {
