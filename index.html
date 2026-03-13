@@ -17,15 +17,15 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="icon" type="image/png" href="/atrios_logo_v2.png">
-    <link rel="shortcut icon" href="/atrios_logo_v2.png">
-    <link rel="apple-touch-icon" href="/atrios_logo_v2.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="shortcut icon" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
 
     <!-- SEO Master - Palavras-Chave Estratégicas -->
     <title>AtriosWork - Melhor App de Controlo e Registo de Horas de Trabalho em Portugal</title>
     <meta name="description" content="O AtriosWork é a aplicação de registo de horas ideal para gerir o seu horário de trabalho em Portugal. Calcule horas extra, organize pagamentos e gere relatórios de horas para o IRS. Perfeito para recibos verdes e trabalho por turnos.">
     <meta name="keywords" content="controlo de horas de trabalho, registo de horas de trabalho, gestão de horas trabalhadas, controlo de horários, registo de horas extra, controlo de pagamentos, calcular horas trabalhadas, não me pagaram horas extra, como calcular horas extra, erro no pagamento do salário, folha de horas trabalho, horas extra Portugal, recibos verdes controlo horas, IRS horas trabalhadas, relatório de horas para IRS, app controlo de horas, aplicação registo de horas, app gestão de horários">
-    <link rel="canonical" href="https://nexustimepro.pt" />
+    <link rel="canonical" href="https://atrioswork.pt" />
     
     <!-- Structured Data (Schema.org) para Google Rich Snippets -->
     <script type="application/ld+json">
@@ -186,7 +186,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js', { scope: './' }).then(reg => {
+          navigator.serviceWorker.register('/sw-v2.js', { scope: '/' }).then(reg => {
             console.log('AtriosWork Sentinel Service Worker ativo na origem:', reg.scope);
           }).catch(err => {
             console.warn('Registro de SW ignorado ou falhou:', err.message);
