@@ -2,20 +2,20 @@
   "name": "AtriosWork",
   "short_name": "AtriosWork",
   "description": "Software Profissional de Controlo de Horas e Gestão de Assiduidade em Portugal.",
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "./atrios_logo_v2.png",
+      "src": "/atrios_logo_v2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./atrios_logo_v2.png",
+      "src": "/atrios_logo_v2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -27,8 +27,8 @@
       "name": "Registar Dia",
       "short_name": "Registo",
       "description": "Abrir registo de horas",
-      "url": "./index.html",
-      "icons": [{ "src": "./atrios_logo_v2.png", "sizes": "96x96" }]
+      "url": "/",
+      "icons": [{ "src": "/atrios_logo_v2.png", "sizes": "96x96" }]
     }
   ]
 }
