@@ -44,7 +44,7 @@ const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, 
   return (
     <>
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-24 bg-slate-950 border-r border-white/5 z-[100] flex-col items-center py-10">
-        <img src="/logo-v3.png" className="w-10 h-10 object-contain rounded-xl mb-12 shadow-lg shadow-purple-500/20" alt="AtriosWork Logo" />
+        <img src="/logo.png?v=20260313" className="w-10 h-10 object-contain rounded-xl mb-12 shadow-lg shadow-purple-500/20" alt="AtriosWork Logo" />
         <nav className="flex-1 space-y-4 w-full px-2">
           {filteredTabs.map((tab) => (
             <button
