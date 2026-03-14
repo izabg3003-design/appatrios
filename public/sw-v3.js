@@ -1,9 +1,9 @@
-const CACHE_NAME = 'atrioswork-v4.0';
+const CACHE_NAME = 'atrioswork-v5.0';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/logo.png?v=v20_final'
+  '/logo.png?v=v2026_03_14_final'
 ];
 
 self.addEventListener('install', (event) => {
