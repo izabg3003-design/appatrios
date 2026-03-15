@@ -1,9 +1,9 @@
-const CACHE_NAME = 'atrioswork-v8.0';
+const CACHE_NAME = 'atrioswork-v9.0';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/logo_v2.png',
+  '/logo_v3.png',
   '/favicon.ico'
 ];
 
