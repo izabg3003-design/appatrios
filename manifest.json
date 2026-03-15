@@ -9,51 +9,51 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "72x72",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "96x96",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "128x128",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "144x144",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "152x152",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "192x192",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "384x384",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/logo_atualizado.jpg?v=20260314_v1",
+      "src": "/logo_v2.png?v=2",
       "sizes": "512x512",
-      "type": "image/jpeg",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
@@ -64,7 +64,7 @@
       "short_name": "Registo",
       "description": "Abrir registo de horas",
       "url": "/",
-      "icons": [{ "src": "/logo_atualizado.jpg?v=20260314_v1", "sizes": "96x96" }]
+      "icons": [{ "src": "/logo_v2.png?v=2", "sizes": "96x96" }]
     }
   ]
 }
