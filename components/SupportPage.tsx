@@ -136,7 +136,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
     if (notificationsEnabled) {
       const n = new Notification("AtriosWork - ALERTA URGENTE", {
         body: `NOVO TICKET DE: ${ticket.profiles?.name || 'Visitante'}\n"${ticket.last_message}"`,
-        icon: "/logo_v2.png?v=2",
+        icon: "/logo_v2.png",
         requireInteraction: true, // A notificação não desaparece até o usuário clicar/fechar
         tag: "atrioswork-alert" // Evita múltiplas notificações iguais
       });
