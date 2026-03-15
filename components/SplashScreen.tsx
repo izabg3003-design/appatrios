@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { logoBase64 } from '../src/assets/logoBase64';
 
 interface Props {
   // Fixed: Change return type to any to support complex translation values
@@ -16,7 +17,12 @@ const SplashScreen: React.FC<Props> = ({ t }) => {
         <div className="w-[300px] h-[300px] bg-purple-400/20 rounded-full blur-[80px] animate-bounce absolute top-1/4"></div>
       </div>
 
-      <div className="relative z-10 text-center px-4">
+      <div className="relative z-10 text-center px-4 flex flex-col items-center">
+        <img 
+          src={logoBase64} 
+          className="w-24 h-24 object-contain mb-8 animate-[fadeIn_1.5s_ease-in-out]" 
+          alt="AtriosWork Logo" 
+        />
         <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-green-400 bg-clip-text text-transparent animate-[fadeIn_2s_ease-in-out]">
           AtriosWork
         </h1>

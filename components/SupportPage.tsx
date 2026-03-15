@@ -136,7 +136,7 @@ const SupportPage: React.FC<Props> = ({ user, f, t }) => {
     if (notificationsEnabled) {
       const n = new Notification("AtriosWork - ALERTA URGENTE", {
         body: `NOVO TICKET DE: ${ticket.profiles?.name || 'Visitante'}\n"${ticket.last_message}"`,
-        icon: "/logo_v3.png",
+        icon: "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjRjk3MzE2Ii8+PGNpcmNsZSBjeD0iNDYiIGN5PSI0MiIgcj0iMjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNyIvPjxwYXRoIGQ9Ik00NiAyMlY0Mkw2MiA1MiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cmVjdCB4PSIzMiIgeT0iNjIiIHdpZHRoPSI1OCIgaGVpZ2h0PSIyOCIgcng9IjQiIGZpbGw9IndoaXRlIi8+PHJlY3QgeD0iMzgiIHk9IjY5IiB3aWR0aD0iNiIgaGVpZ2h0PSI2IiByeD0iMSIgZmlsbD0iI0Y5NzMxNiIvPjxyZWN0IHg9IjM4IiB5PSI3OCIgd2lkdGg9IjYiIGhlaWdodD0iNiIgcng9IjEiIGZpbGw9IiNGOTczMTYiLz48cmVjdCB4PSI1MCIgeT0iNzAiIHdpZHRoPSIzMiIgaGVpZ2h0PSI0IiByeD0iMSIgZmlsbD0iI0Y5NzMxNiIvPjxyZWN0IHg9IjUwIiB5PSI3OSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjQiIHJ4PSIxIiBmaWxsPSIjRjk3MzE2Ii8+PC9zdmc+",
         requireInteraction: true, // A notificação não desaparece até o usuário clicar/fechar
         tag: "atrioswork-alert" // Evita múltiplas notificações iguais
       });

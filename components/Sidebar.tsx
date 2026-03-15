@@ -2,6 +2,7 @@
 import React from 'react';
 import { Settings, LogOut, FileText, LayoutDashboard, DollarSign, ShieldCheck, BriefcaseBusiness, Award, ShoppingCart, LifeBuoy, Info, Eye, EyeOff, Lock } from 'lucide-react';
 import { UserProfile, AppState } from '../types';
+import Logo from './Logo';
 
 interface Props {
   activeTab: AppState;
@@ -44,7 +45,7 @@ const Sidebar: React.FC<Props> = ({ activeTab, setActiveTab, user, onLogout, t, 
   return (
     <>
       <aside className="hidden md:flex fixed left-0 top-0 bottom-0 w-24 bg-slate-950 border-r border-white/5 z-[100] flex-col items-center py-10">
-        <img src="/logo_v3.png" className="w-10 h-10 object-contain rounded-xl mb-12 shadow-lg shadow-purple-500/20" alt="AtriosWork Logo" />
+        <Logo className="w-10 h-10 rounded-xl mb-12 shadow-lg shadow-orange-500/20" />
         <nav className="flex-1 space-y-4 w-full px-2">
           {filteredTabs.map((tab) => (
             <button
