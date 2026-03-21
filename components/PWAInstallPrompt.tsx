@@ -14,8 +14,12 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
   const [isInstalling, setIsInstalling] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const [timerPassed, setTimerPassed] = useState(false);
+  const [isInIframe, setIsInIframe] = useState(false);
 
   useEffect(() => {
+    // Check if in iframe
+    setIsInIframe(window.self !== window.top);
+
     // Check if already installed
     if (window.matchMedia('(display-mode: standalone)').matches || (window.navigator as any).standalone) {
       setIsInstalled(true);
@@ -66,6 +70,13 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
   }, [timerPassed, isInstalled]);
 
   const handleInstallClick = async () => {
+    if (isInIframe) {
+      // If in iframe, open in new window so PWA can be installed
+      window.open(window.location.href, '_blank');
+      setShowPrompt(false);
+      return;
+    }
+
     if (deferredPrompt) {
       setIsInstalling(true);
       // Show the native install prompt immediately
@@ -79,11 +90,6 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
         setIsInstalling(false);
       }
       setDeferredPrompt(null);
-    } else if (isIOS) {
-      // For iOS, we still have to show what to do, but we'll make it look like a system dialog
-      // However, the user specifically said "no instructions", so we'll just show the "Install" button
-      // and if they click it, we show the minimal steps.
-      // To satisfy the user, let's make the button text "Instalar Agora"
     }
   };
 
@@ -117,7 +123,14 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
         </div>
 
         <div className="space-y-3">
-          {deferredPrompt ? (
+          {isInIframe ? (
+            <button 
+              onClick={handleInstallClick}
+              className="w-full py-5 bg-[#10b981] hover:bg-[#059669] text-[#020617] font-black rounded-2xl flex items-center justify-center gap-3 shadow-2xl shadow-emerald-500/20 transition-all active:scale-95 text-xs uppercase tracking-[0.2em]"
+            >
+              <Download className="w-5 h-5" /> ABRIR PARA INSTALAR
+            </button>
+          ) : deferredPrompt ? (
             <button 
               onClick={handleInstallClick}
               disabled={isInstalling}
@@ -145,12 +158,23 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
               </button>
             </div>
           ) : (
-            <button 
-              onClick={() => alert("O seu navegador ainda está a preparar a instalação. Por favor, aguarde alguns segundos ou use o menu do navegador para 'Instalar App'.")}
-              className="w-full py-5 bg-[#10b981] hover:bg-[#059669] text-[#020617] font-black rounded-2xl flex items-center justify-center gap-3 shadow-2xl shadow-emerald-500/20 transition-all active:scale-95 text-xs uppercase tracking-[0.2em]"
-            >
-              <Download className="w-5 h-5" /> INSTALAR AGORA
-            </button>
+            <div className="space-y-4">
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
+                <p className="text-[10px] text-slate-300 font-medium leading-relaxed mb-3">
+                  O seu navegador ainda está a preparar a instalação automática. Pode instalar manualmente:
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white font-bold text-xs">...</div>
+                  <p className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Menu do Navegador &gt; Instalar App</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowPrompt(false)}
+                className="w-full py-4 bg-white/5 hover:bg-white/10 text-white font-black rounded-2xl text-[10px] uppercase tracking-widest transition-all"
+              >
+                Vou tentar manual
+              </button>
+            </div>
           )}
         </div>
       </div>
