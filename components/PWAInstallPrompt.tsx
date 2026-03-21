@@ -3,7 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Download, X, Laptop, Smartphone } from 'lucide-react';
 import Logo from './Logo';
 
-const PWAInstallPrompt: React.FC = () => {
+interface PWAInstallPromptProps {
+  delay?: number;
+}
+
+const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 10000 }) => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
@@ -31,20 +35,20 @@ const PWAInstallPrompt: React.FC = () => {
 
     window.addEventListener('appinstalled', handleAppInstalled);
 
-    // Timer to show prompt after 10 seconds (10000ms)
+    // Timer to show prompt after specified delay
     // Only if not already installed
     const timer = setTimeout(() => {
       if (!isInstalled) {
         setShowPrompt(true);
       }
-    }, 10000);
+    }, delay);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
       window.removeEventListener('appinstalled', handleAppInstalled);
       clearTimeout(timer);
     };
-  }, [isInstalled]);
+  }, [isInstalled, delay]);
 
   const handleInstallClick = async () => {
     if (!deferredPrompt) {

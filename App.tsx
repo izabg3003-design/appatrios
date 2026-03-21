@@ -340,7 +340,8 @@ const App: React.FC = () => {
       {appState === 'about-atrioswork' && <AboutAtriosWorkPage onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} />}
       
       {user.id && <PublicSupportChat />}
-      {user.id && <PWAInstallPrompt />}
+      {user.id && <PWAInstallPrompt delay={10000} />}
+      {!user.id && appState === 'landing' && <PWAInstallPrompt delay={5000} />}
 
       {['dashboard', 'finance', 'reports', 'accountant', 'settings', 'admin', 'vendor-detail', 'vendor-sales', 'support', 'user-support'].includes(appState) && (
         <div className="flex h-screen overflow-hidden relative">
