@@ -213,6 +213,17 @@
     
     <!-- Service Worker Registration Fixed for TWA/Store -->
     <script>
+      // Global variable to store the install prompt event
+      window.deferredPWAPrompt = null;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        window.deferredPWAPrompt = e;
+        console.log('PWA: Global beforeinstallprompt captured');
+        // Dispatch a custom event so React can listen for it if it's already mounted
+        window.dispatchEvent(new CustomEvent('pwa-prompt-captured'));
+      });
+
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw-v3.js', { scope: '/' }).then(reg => {

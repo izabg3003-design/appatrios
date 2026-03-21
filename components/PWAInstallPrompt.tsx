@@ -29,15 +29,29 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
     const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
     setIsIOS(isIOSDevice);
 
+    // Initial check for global prompt
+    if ((window as any).deferredPWAPrompt) {
+      setDeferredPrompt((window as any).deferredPWAPrompt);
+      console.log('PWA: React picked up global prompt');
+    }
+
     const handleBeforeInstallPrompt = (e: any) => {
       // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
       // Stash the event so it can be triggered later.
       setDeferredPrompt(e);
-      console.log('PWA: beforeinstallprompt event captured');
+      console.log('PWA: React captured beforeinstallprompt event');
+    };
+
+    const handleGlobalPromptCaptured = () => {
+      if ((window as any).deferredPWAPrompt) {
+        setDeferredPrompt((window as any).deferredPWAPrompt);
+        console.log('PWA: React notified of global prompt capture');
+      }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('pwa-prompt-captured', handleGlobalPromptCaptured);
 
     const handleAppInstalled = () => {
       setIsInstalled(true);
@@ -56,6 +70,7 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('pwa-prompt-captured', handleGlobalPromptCaptured);
       window.removeEventListener('appinstalled', handleAppInstalled);
       clearTimeout(timer);
     };
@@ -163,17 +178,39 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => 
                 <p className="text-[10px] text-slate-300 font-medium leading-relaxed mb-3">
                   O seu navegador ainda está a preparar a instalação automática. Pode instalar manualmente:
                 </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white font-bold text-xs">...</div>
-                  <p className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Menu do Navegador &gt; Instalar App</p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white font-bold text-xs">...</div>
+                    <p className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Menu do Chrome &gt; Guardar e Partilhar &gt; Instalar App</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white font-bold text-xs">
+                      <Download className="w-4 h-4" />
+                    </div>
+                    <p className="text-[9px] text-slate-400 uppercase font-black tracking-tighter">Ícone na barra de endereço (Omnibox)</p>
+                  </div>
                 </div>
               </div>
-              <button 
-                onClick={() => setShowPrompt(false)}
-                className="w-full py-4 bg-white/5 hover:bg-white/10 text-white font-black rounded-2xl text-[10px] uppercase tracking-widest transition-all"
-              >
-                Vou tentar manual
-              </button>
+              <div className="grid grid-cols-2 gap-3">
+                <button 
+                  onClick={() => {
+                    if ((window as any).deferredPWAPrompt) {
+                      setDeferredPrompt((window as any).deferredPWAPrompt);
+                    } else {
+                      window.location.reload();
+                    }
+                  }}
+                  className="py-4 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 font-black rounded-2xl text-[10px] uppercase tracking-widest transition-all border border-emerald-500/20"
+                >
+                  Re-verificar
+                </button>
+                <button 
+                  onClick={() => setShowPrompt(false)}
+                  className="py-4 bg-white/5 hover:bg-white/10 text-white font-black rounded-2xl text-[10px] uppercase tracking-widest transition-all"
+                >
+                  Vou tentar manual
+                </button>
+              </div>
             </div>
           )}
         </div>
