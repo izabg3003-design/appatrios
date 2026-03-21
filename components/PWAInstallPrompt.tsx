@@ -31,13 +31,13 @@ const PWAInstallPrompt: React.FC = () => {
 
     window.addEventListener('appinstalled', handleAppInstalled);
 
-    // Timer to show prompt after 1 minute (60000ms)
+    // Timer to show prompt after 10 seconds (10000ms)
     // Only if not already installed
     const timer = setTimeout(() => {
       if (!isInstalled) {
         setShowPrompt(true);
       }
-    }, 60000);
+    }, 10000);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
