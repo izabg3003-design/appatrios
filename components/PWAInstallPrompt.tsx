@@ -7,7 +7,7 @@ interface PWAInstallPromptProps {
   delay?: number;
 }
 
-const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 10000 }) => {
+const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 3000 }) => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showPrompt, setShowPrompt] = useState(false);
   const [isInstalled, setIsInstalled] = useState(false);
@@ -57,14 +57,13 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 10000 }) =>
     };
   }, [delay]);
 
-  // Only show the prompt if the timer has passed AND we either have the native prompt OR it's iOS
+  // Only show the prompt if the timer has passed AND we either have the native prompt OR it's iOS OR we're in a "force" state for the demo
   useEffect(() => {
     if (timerPassed && !isInstalled) {
-      if (deferredPrompt || isIOS) {
-        setShowPrompt(true);
-      }
+      // Show it regardless of the event for the demo, so the user can see the design
+      setShowPrompt(true);
     }
-  }, [timerPassed, deferredPrompt, isIOS, isInstalled]);
+  }, [timerPassed, isInstalled]);
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
@@ -145,7 +144,14 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 10000 }) =>
                 Entendido
               </button>
             </div>
-          ) : null}
+          ) : (
+            <button 
+              onClick={() => alert("O seu navegador ainda está a preparar a instalação. Por favor, aguarde alguns segundos ou use o menu do navegador para 'Instalar App'.")}
+              className="w-full py-5 bg-[#10b981] hover:bg-[#059669] text-[#020617] font-black rounded-2xl flex items-center justify-center gap-3 shadow-2xl shadow-emerald-500/20 transition-all active:scale-95 text-xs uppercase tracking-[0.2em]"
+            >
+              <Download className="w-5 h-5" /> INSTALAR AGORA
+            </button>
+          )}
         </div>
       </div>
     </div>
