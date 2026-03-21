@@ -476,11 +476,26 @@ const SubscriptionPage: React.FC<Props> = ({ onSuccess, onBack, t }) => {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-white/5 text-center">
+                <div className="pt-6 border-t border-white/5 text-center space-y-4">
                   <button type="submit" disabled={loading} className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-7 rounded-[2.5rem] transition-all shadow-[0_15px_40px_rgba(16,185,129,0.3)] flex items-center justify-center gap-4 disabled:opacity-50 text-xl uppercase tracking-widest">
                     {loading ? <Loader2 className="w-8 h-8 animate-spin" /> : <><ShieldCheck className="w-7 h-7" /> Ativar Minha Licença</>}
                   </button>
-                  <p className="mt-4 text-[9px] font-black text-slate-600 uppercase tracking-[0.2em]">Pagamento via Stripe Secure Gateway</p>
+                  
+                  <div className="flex items-center gap-4">
+                    <div className="h-px flex-1 bg-white/5"></div>
+                    <span className="text-[9px] font-black text-slate-600 uppercase tracking-widest">Ou use Cripto</span>
+                    <div className="h-px flex-1 bg-white/5"></div>
+                  </div>
+
+                  <button 
+                    type="button"
+                    onClick={() => alert("Integração Binance Pay: Para ativar, precisamos das suas chaves de Merchant da Binance.")}
+                    className="w-full bg-[#F3BA2F] hover:bg-[#e2ac2b] text-slate-950 font-black py-5 rounded-[2rem] transition-all shadow-xl flex items-center justify-center gap-3 text-xs uppercase tracking-widest"
+                  >
+                    Pagar com Binance Pay <Zap className="w-4 h-4 fill-current" />
+                  </button>
+
+                  <p className="mt-4 text-[9px] font-black text-slate-600 uppercase tracking-[0.2em]">Pagamento via Stripe ou Binance Pay</p>
                 </div>
               </form>
             </div>

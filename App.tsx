@@ -23,7 +23,7 @@ import PublicSupportChat from './components/PublicSupportChat';
 import { AppState, UserProfile, WorkRecord, Language, Currency } from './types';
 import { supabase, isConfigured } from './lib/supabase';
 import { translations } from './translations';
-import { X, Crown, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
+import { X, Crown, CheckCircle2, ArrowRight, Sparkles, Zap } from 'lucide-react';
 
 declare global {
   interface window {
@@ -102,8 +102,22 @@ const PremiumModal: React.FC<{ isOpen: boolean; onClose: () => void; onUpgrade: 
               >
                 Ativar Assinatura Anual <ArrowRight className="w-4 h-4" />
               </button>
+              
+              <div className="flex items-center gap-4">
+                <div className="h-px flex-1 bg-white/10"></div>
+                <span className="text-[9px] font-black text-slate-600 uppercase tracking-widest">Ou pague com Cripto</span>
+                <div className="h-px flex-1 bg-white/10"></div>
+              </div>
+
+              <button 
+                onClick={onUpgrade}
+                className="w-full py-4 bg-[#F3BA2F] hover:bg-[#e2ac2b] text-slate-950 font-black rounded-[2rem] flex items-center justify-center gap-3 shadow-xl shadow-[#F3BA2F]/10 transition-all hover:scale-[1.02] active:scale-95 text-xs uppercase tracking-[0.2em]"
+              >
+                Pagar com Binance Pay <Zap className="w-4 h-4 fill-current" />
+              </button>
+
               <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest flex items-center justify-center gap-2">
-                <Sparkles className="w-3 h-3 text-amber-400" /> Pagamento Seguro via Stripe
+                <Sparkles className="w-3 h-3 text-amber-400" /> Pagamento Seguro via Stripe ou Binance
               </p>
             </div>
           </div>

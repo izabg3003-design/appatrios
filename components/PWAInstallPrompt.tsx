@@ -91,70 +91,61 @@ const PWAInstallPrompt: React.FC<PWAInstallPromptProps> = ({ delay = 10000 }) =>
   if (isInstalled || !showPrompt) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xl animate-[fadeIn_0.3s_ease-out]">
-      <div className="relative w-full max-w-md bg-slate-900 rounded-[3rem] overflow-hidden shadow-[0_0_100px_rgba(16,185,129,0.2)] border border-emerald-500/30 animate-[modalScale_0.4s_ease-out] p-8 md:p-10 text-center">
+    <div className="fixed bottom-6 left-4 right-4 md:left-auto md:right-8 md:w-[400px] z-[9999] animate-[slideUp_0.5s_ease-out]">
+      <div className="relative bg-[#0f172a] rounded-[2.5rem] p-8 shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/5 overflow-hidden">
+        {/* Background Glow */}
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/5 blur-[80px] pointer-events-none"></div>
+        
         <button 
           onClick={() => setShowPrompt(false)}
-          className="absolute top-6 right-6 z-50 p-2 bg-white/5 hover:bg-white/10 text-white rounded-full transition-all border border-white/10"
+          className="absolute top-6 right-6 p-1.5 text-slate-500 hover:text-white transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex flex-col items-center space-y-6">
-          <div className="w-20 h-20 bg-gradient-to-tr from-emerald-600 to-teal-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-500/40">
-            <Logo className="w-12 h-12" />
+        <div className="flex items-start gap-5 mb-8">
+          <div className="w-16 h-16 bg-[#064e3b] rounded-2xl flex items-center justify-center shrink-0 border border-emerald-500/10">
+            <Smartphone className="w-8 h-8 text-[#10b981]" />
           </div>
-
-          <div className="space-y-2">
-            <h2 className="text-2xl md:text-3xl font-black text-white italic uppercase tracking-tighter leading-none">
-              Instalar <span className="text-emerald-400">AtriosWork</span>
-            </h2>
-            <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">App Oficial • Versão 16.0</p>
+          <div className="pr-6 pt-1">
+            <h3 className="text-xl font-black text-white uppercase italic tracking-tighter leading-tight mb-2">
+              Instalar Átrios App
+            </h3>
+            <p className="text-xs text-slate-400 font-medium leading-relaxed">
+              Tenha acesso rápido aos seus orçamentos e loja diretamente da sua tela inicial.
+            </p>
           </div>
+        </div>
 
-          <p className="text-sm text-slate-400 font-medium leading-relaxed">
-            Clique no botão abaixo para instalar a aplicação diretamente no seu dispositivo e aceder instantaneamente.
-          </p>
-
-          <div className="w-full space-y-4 pt-4">
-            {deferredPrompt ? (
-              <button 
-                onClick={handleInstallClick}
-                disabled={isInstalling}
-                className="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-slate-950 font-black rounded-[2rem] flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/20 transition-all hover:scale-[1.02] active:scale-95 text-xs uppercase tracking-[0.2em] disabled:opacity-50"
-              >
-                {isInstalling ? "A Instalar..." : "Instalar Agora"} <Download className="w-4 h-4" />
-              </button>
-            ) : isIOS ? (
-              <div className="space-y-6">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl border border-white/5 text-left">
-                    <Share className="w-6 h-6 text-emerald-400 shrink-0" />
-                    <p className="text-xs text-slate-300">1. Toque em <span className="text-white font-bold">"Partilhar"</span> no menu do Safari</p>
-                  </div>
-                  <div className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl border border-white/5 text-left">
-                    <PlusSquare className="w-6 h-6 text-emerald-400 shrink-0" />
-                    <p className="text-xs text-slate-300">2. Selecione <span className="text-white font-bold">"Ecrã Principal"</span></p>
-                  </div>
+        <div className="space-y-3">
+          {deferredPrompt ? (
+            <button 
+              onClick={handleInstallClick}
+              disabled={isInstalling}
+              className="w-full py-5 bg-[#10b981] hover:bg-[#059669] text-[#020617] font-black rounded-2xl flex items-center justify-center gap-3 shadow-2xl shadow-emerald-500/20 transition-all active:scale-95 text-xs uppercase tracking-[0.2em] disabled:opacity-50"
+            >
+              <Download className="w-5 h-5" /> {isInstalling ? "A Instalar..." : "INSTALAR AGORA"}
+            </button>
+          ) : isIOS ? (
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5">
+                  <Share className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <p className="text-[9px] text-slate-300 font-black uppercase tracking-tighter">1. Partilhar</p>
                 </div>
-                <button 
-                  onClick={() => setShowPrompt(false)}
-                  className="w-full py-4 bg-emerald-600/20 text-emerald-400 font-bold rounded-2xl text-xs uppercase tracking-widest"
-                >
-                  Entendido
-                </button>
+                <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5">
+                  <PlusSquare className="w-5 h-5 text-emerald-400 shrink-0" />
+                  <p className="text-[9px] text-slate-300 font-black uppercase tracking-tighter">2. Ecrã Principal</p>
+                </div>
               </div>
-            ) : null}
-            
-            {!isIOS && (
               <button 
                 onClick={() => setShowPrompt(false)}
-                className="text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-white transition-colors"
+                className="w-full py-4 bg-white/5 hover:bg-white/10 text-white font-black rounded-2xl text-[10px] uppercase tracking-widest transition-all"
               >
-                Agora não
+                Entendido
               </button>
-            )}
-          </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
