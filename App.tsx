@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage';
 import SubscriptionPage from './components/SubscriptionPage';
 import LoginPage from './components/LoginPage';
 import Sidebar from './components/Sidebar';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 import Dashboard from './components/Dashboard';
 import FinancePage from './components/FinancePage';
 import ReportsPage from './components/ReportsPage';
@@ -339,6 +340,7 @@ const App: React.FC = () => {
       {appState === 'about-atrioswork' && <AboutAtriosWorkPage onBack={() => setAppState(user.id ? 'dashboard' : 'landing')} />}
       
       {user.id && <PublicSupportChat />}
+      {user.id && <PWAInstallPrompt />}
 
       {['dashboard', 'finance', 'reports', 'accountant', 'settings', 'admin', 'vendor-detail', 'vendor-sales', 'support', 'user-support'].includes(appState) && (
         <div className="flex h-screen overflow-hidden relative">
