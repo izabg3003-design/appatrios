@@ -296,7 +296,9 @@ const LandingPage: React.FC<Props> = ({ onLogin, onSubscribe, onFreeRegister, on
                <a href="https://www.facebook.com/share/1CSeJPHprp/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-colors">
                   <Facebook className="w-5 h-5" />
                </a>
-               <Globe className="w-5 h-5 text-slate-500" />
+               <a href="https://atrioswork.pt/" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">
+                  <Globe className="w-5 h-5" />
+               </a>
                <MousePointerClick className="w-5 h-5 text-slate-500" />
             </div>
           </div>
