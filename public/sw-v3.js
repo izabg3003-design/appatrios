@@ -28,13 +28,21 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  const isExternalApi = url.hostname.includes('supabase.co') || 
+                       url.hostname.includes('jivosite') || 
+                       url.hostname.includes('google-analytics') ||
+                       url.hostname.includes('esm.sh');
+
+  if (isExternalApi) return;
+
   event.respondWith(
     caches.match(event.request).then((response) => {
-      return response || fetch(event.request).catch(() => {
-        // Fallback básico para quando estiver totalmente offline
+      return response || fetch(event.request).catch((err) => {
         if (event.request.mode === 'navigate') {
           return caches.match('./index.html');
         }
+        throw err;
       });
     })
   );
